@@ -10,7 +10,11 @@
 
 {% block banner %}
   <div class="banner"
-       style="background: url( {% static '/images/icons/image.svg' %}) no-repeat center center fixed;">
+       style="background: url( {% static 'images/icons/image.svg' %}) no-repeat center center fixed;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: 50% 50%;">
     <div class="home-form__container"> 
         <div class="home-form__title">
             {% block form_title %}Welcome back{% endblock %}
