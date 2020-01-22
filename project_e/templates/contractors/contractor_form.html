@@ -1,0 +1,23 @@
+{% extends "form.html" %}
+{% load crispy_forms_tags %}
+
+{% block page_header %} Register your contracting company!
+{% endblock page_header %}
+
+{% block form_header %}
+    Lets get started
+{% endblock form_header %}
+
+{% block form_message %} but first, we need some info
+{% endblock form_message %}
+
+{% block form %}
+    <form class="" method="POST" action=""> 
+    {% csrf_token %}
+    {{ form|crispy }}
+    {% block actions %}
+        <button class="btn btn-primary" type="submit">Create</button>
+    {% endblock actions %}
+    </form>
+{% endblock form %}
+
