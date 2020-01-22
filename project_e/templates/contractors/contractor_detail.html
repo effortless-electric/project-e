@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block head_title %} Welcome: 
+{% endblock head_title %}
+
+{% block content %}
+    {{object.name}}
+    {{object.address}}
+{% endblock content %}
+
+

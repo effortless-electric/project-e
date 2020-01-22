@@ -1,0 +1,17 @@
+{% extends "form.html" %}
+{% load crispy_forms_tags %}
+
+{% block page_header %}{{ user.username }}{% endblock %}
+
+{% block form %}  
+  <form class="form-horizontal" method="post" action="{% url 'users:add-customer' %}">
+    {% if form.errors %}
+      form.errors
+    {% endif %}
+    {% csrf_token %}
+    {{ form|crispy }}
+    {% block actions %}       
+      <button type="submit" class="btn btn-primary">Submit</button>
+    {% endblock actions %}
+  </form>
+{% endblock form%}
