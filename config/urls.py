@@ -16,7 +16,8 @@ urlpatterns = [
     # User management
     path("users/", include("project_e.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
-    path("dealers/", include("project_e.dealers.urls", namespace="dealers"))
+    path("dealers/", include("project_e.dealers.urls", namespace="dealers")),
+    path("contractors/", include("project_e.contractors.urls", namespace="contractors"))
     # Your stuff: custom urls includes go here
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

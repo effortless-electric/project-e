@@ -4,6 +4,9 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 
 from project_e.dealers.models import Dealer
+from project_e.contractors.models import Contractor
+#from project_e.customers.models import Customer
+#from project_e.customers.forms import DealerAddCustForm
 
 User = get_user_model()
 
@@ -32,11 +35,20 @@ class UserCreationForm(forms.UserCreationForm):
 
         raise ValidationError(self.error_messages["duplicate_username"])
 
-class UserAddDealerForm(default_form.Form): 
+class UserAddDealerForm(default_form.Form):
     dealercode = default_form.CharField()
 
-    def clean_dealercode(self): 
+    def clean_dealercode(self):
         dealercode = self.cleaned_data["dealercode"]
-        if not Dealer.objects.get(id=dealercode): 
+        if not Dealer.objects.get(id=dealercode):
             raise forms.ValidationError("You have forgotten about Fred!")
         return dealercode
+
+class UserAddContractorForm(default_form.Form):
+    contractorcode = default_form.CharField()
+
+    def clean_contractorcode(self):
+        contractorcode = self.cleaned_data["contractorcode"]
+        if not Contractor.objects.get(id=contractorcode):
+            raise forms.ValidationError("You have forgotten about Fred!")
+        return contractorcode
