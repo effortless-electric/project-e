@@ -1,9 +1,5 @@
-$white: #fff;
-$mint-green: #d6e9c6;
-$black: #000;
-$pink: #f2dede;
-$dark-pink: #eed3d7;
-$red: #b94a48;
+@import 'custom_bootstrap_vars.scss'; 
+$button-height: 50px; 
 
 .base-nav {
   display: flex; 
@@ -42,7 +38,7 @@ $red: #b94a48;
       weight: 100; 
       border: 1px solid lightgray;
       // border-radius: 5px; 
-      box-shadow: 0px 1px 3px lightgray;
+      box-shadow: 0px 1px 3px $ee-gray;
     }
   }
 
@@ -109,8 +105,8 @@ html, body
     width: 80%; 
     align-content: center;
     border-radius: 20px;
-    background-color: #f2f2f2; 
-    box-shadow: 0 2px 3px #d3d3d3;  
+    background-color: $ee-lightest-gray; 
+    box-shadow: 0 2px 3px $ee-light-gray;  
   }
 }
 
@@ -210,7 +206,7 @@ ul {
   &__icon {
     width: 200px; 
     height: 200px; 
-    border: 1px solid black; 
+    border: 1px solid $black; 
   }
 }
 
@@ -221,7 +217,47 @@ ul {
   align-content:center; 
   justify-content: space-between;
   margin-bottom: 10px; 
-  border: 1px solid gray; 
+  border: 1px solid $ee-gray; 
   height: 50px; 
   border-radius: 5px; 
+}
+
+div {
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+hr {
+  border:0.5px solid $ee-gray;
+  width: 96%;
+  color: #FFFF00;
+  height: 0;  
+  margin: 0; 
+}
+
+.button { 
+  &--gray {
+    @extend .button; 
+    background-color: $ee-gray;
+  }
+
+  &--blue {
+    @extend .button; 
+    background-color: $ee-blue;
+  }
+
+  display: flex; 
+  flex-flow: row wrap; 
+  justify-content: center;
+  align-content: center;
+  font-family: 'Calibre Test', 'Helvetica';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  height: $button-height; 
+  width: 200px; 
+  background: black; 
+  color: white; 
+  border: 0px solid white; 
+  text-transform: uppercase;
 }

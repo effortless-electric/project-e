@@ -1,9 +1,8 @@
-$button-height: 50px; 
 $features-icon-size: 83px; 
 $demo-blue: #DCF0F1; 
 $demo-green: #DFF5D5; 
 $icon-size: 150px; 
-
+$button-height: 50px; 
 
 
 .home-page {
@@ -16,7 +15,7 @@ $icon-size: 150px;
       margin: 40px auto; 
       display: flex; 
       flex-flow: row; 
-      width: 100%; 
+      width: 100%;
     }
 
     &-input { 
@@ -25,26 +24,7 @@ $icon-size: 150px;
       height: $button-height; 
       color: black; 
       border: 0px solid white; 
-      
     }
-  }
-
-  &__button { 
-    display: flex; 
-    flex-flow: row wrap; 
-    justify-content: center;
-    align-content: center;
-    font-family: 'Calibre Test', 'Helvetica';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
-    height: $button-height; 
-    width: 200px; 
-    background: black; 
-    color: white; 
-    border: 0px solid white; 
-    text-transform: uppercase;
   }
 
   &__header {

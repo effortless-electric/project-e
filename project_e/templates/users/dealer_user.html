@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block scss %} {% static 'css/users/user_detail.css' %} {% endblock scss%}
+
+{% block title %}Effortless Electric{% endblock %}
+
+{% block content %}
+  <div class="user-detail">
+      <div class="user-detail-side-bar">
+        <div class="user-detail-side-bar__title"> {{request.user.dealership.name}} </div>
+        <hr>
+        <div class="user-detail-side-bar__tab">
+          <img src="{% static 'images/icons/pie-chart.svg' %}"/>
+          <div>Analytics</div> 
+        </div>
+        
+        {% if request.user.sales == True %}
+          <a href="{% url 'users:add-customer' %}">
+            <div class="user-detail-side-bar__tab">
+              <img src="{% static 'images/icons/create-job.svg' %}"/>
+                New Contract 
+            </div>
+          </a>
+        {% endif %}
+        
+        {% if request.user.dealership.admin == request.user %} 
+          <a href="{% url 'dealers:verify'%}">
+            <div class="user-detail-side-bar__tab">
+              <img src="{% static 'images/icons/employee.svg' %}"/>
+              Employees</div>
+          </a> 
+        {% endif %}
+        <div class="user-detail-side-bar__tab">
+          <img src="{% static 'images/icons/jobs.svg' %}"/>
+            Jobs
+        </div>
+      </div>
+      
+      <div class="user-detail__container"> 
+        {% block page_content %}
+           <h2>Hi {{ object.username }}</h2>
+          {% if object.name %}
+            <p>{{ object.name }}</p> 
+          {% endif %}
+
+
+          <div>You're connected to: {{object.dealership.name}}</div>
+        {% endblock page_content %}
+      </div> 
+  </div>
+{% endblock content %}
+

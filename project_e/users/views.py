@@ -4,6 +4,8 @@ from django.urls import reverse
 from django.views.generic import DetailView, RedirectView, UpdateView, FormView
 from django.contrib import messages
 from django.utils.translation import ugettext_lazy as _
+from django.shortcuts import render
+
 from project_e.dealers.models import Dealer
 
 from project_e.contractors.models import Contractor
@@ -23,9 +25,15 @@ class UserDetailView(LoginRequiredMixin, DetailView):
 
     model = User
     slug_field = "username"
-    slug_url_kwarg = "username"
+    slug_url_kwarg = "username" 
 
+    def get(self, *args, **kwargs):
+        template_name = "users/user_detail.html"
+        if self.request.user.dealership: 
+            template_name = "users/dealer_user.html"
+        return render(self.request, template_name, kwargs)
 
+            
 user_detail_view = UserDetailView.as_view()
 
 class UserUpdateView(LoginRequiredMixin, UpdateView):
@@ -105,7 +113,7 @@ user_add_contractor_view = UserAddContractorView.as_view()
 
 class UserAddDealerView(LoginRequiredMixin, RedirectView):
     def get_redirect_url(self, *args, **kwargs):
-        dealer = Dealer.objects.get(id=kwargs['ref_id'])
+        dealer = Dealer.objects.get(ref_id=kwargs['ref_id'])
         self.request.user.dealership = dealer
         self.request.user.sales = True
         self.request.user.verified = False
