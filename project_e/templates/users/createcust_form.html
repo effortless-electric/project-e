@@ -1,17 +1,23 @@
-{% extends "form.html" %}
+{% extends "users\dealer_user.html" %}
 {% load crispy_forms_tags %}
+{% load static %}
+
+{% block child_scss %} {% static 'css/users/createcust_form.css' %} {% endblock child_scss %}
 
 {% block page_header %}{{ user.username }}{% endblock %}
 
-{% block form %}  
-  <form class="form-horizontal" method="post" action="{% url 'users:add-customer' %}">
-    {% if form.errors %}
-      form.errors
-    {% endif %}
-    {% csrf_token %}
-    {{ form|crispy }}
-    {% block actions %}       
-      <button type="submit" class="btn btn-primary">Submit</button>
-    {% endblock actions %}
-  </form>
-{% endblock form%}
+{% block page_content %}
+  <div class="customer-creation">
+    <form class="form-horizontal" method="post" action="{% url 'users:add-customer' %}">
+      {% if form.errors %}
+        form.errors
+      {% endif %}
+      {% csrf_token %}
+      {{ form|crispy }}
+      <div class="customer-creation__actions">
+        <button type="reset" class="button--gray">Cancel</button>     
+        <button type="submit" class="button--blue">Submit</button>
+      </div>
+    </form>
+  </div>
+{% endblock page_content %}

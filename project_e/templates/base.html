@@ -13,7 +13,7 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
 
-    <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}">
+    <link rel="icon" href="{% static 'images\logos\square-logo.jfif' %}">
 
     {% block css %}
     
@@ -27,6 +27,7 @@
     <link href="{% static 'css/project.css' %}" rel="stylesheet">
     
     <link href={% block scss %} {% endblock scss %} rel="stylesheet"> 
+    <link href={% block child_scss %} {% endblock %} rel="stylesheet"> 
     
     {% endblock %}
 
@@ -87,6 +88,7 @@
       <!-- place project specific Javascript in this file -->
       
       <script src="{% static 'js/project.js' %}"></script>
+      <script src="https://kit.fontawesome.com/8459c82f56.js" crossorigin="anonymous"></script>
       
 
     {% endblock javascript %}
