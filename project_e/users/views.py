@@ -46,15 +46,11 @@ def signup(request):
         form = SignUpForm()
     return render(request, 'users/signup.html', {'form': form})
 
-
-    
-
 class UserDetailView(LoginRequiredMixin, DetailView):
 
     model = User
-    slug_field = "email"
-    slug_url_kwarg = "email"
-
+    slug_field = "id"
+    slug_url_kwarg = "id"
 
 user_detail_view = UserDetailView.as_view()
 
@@ -64,10 +60,10 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
     fields = ["dealership"]
 
     def get_success_url(self):
-        return reverse("users:detail", kwargs={"email": self.request.user.email})
+        return reverse("users:detail", kwargs={"id": self.request.user.id})
 
     def get_object(self):
-        return User.objects.get(email=self.request.user.email)
+        return User.objects.get(id=self.request.user.id)
 
     def form_valid(self, form):
         messages.add_message(
@@ -83,7 +79,7 @@ class UserRedirectView(LoginRequiredMixin, RedirectView):
     permanent = False
 
     def get_redirect_url(self):
-        return reverse("users:detail", kwargs={"email": self.request.user.email})
+        return reverse("users:detail", kwargs={"id": self.request.user.id})
 
 
 user_redirect_view = UserRedirectView.as_view()
@@ -140,7 +136,7 @@ class UserAddDealerView(LoginRequiredMixin, RedirectView):
         self.request.user.sales = True
         self.request.user.verified = False
         self.request.user.save(update_fields=['dealership', 'sales', 'verified'])
-        return reverse("users:detail", kwargs={"email": self.request.user.email})
+        return reverse("users:detail", kwargs={"id": self.request.user.id})
 
 user_add_dealer_view = UserAddDealerView.as_view()
 
