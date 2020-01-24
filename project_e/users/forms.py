@@ -96,8 +96,8 @@ class SignUpForm(forms.ModelForm):
             user.save()
         return user
 
-class UserAddDealerForm(default_form.Form):
-    dealercode = default_form.CharField()
+class UserAddDealerForm(forms.Form):
+    dealercode = forms.CharField()
 
     def clean_dealercode(self):
         dealercode = self.cleaned_data["dealercode"]
@@ -105,8 +105,8 @@ class UserAddDealerForm(default_form.Form):
             raise forms.ValidationError("You have forgotten about Fred!")
         return dealercode
 
-class UserAddContractorForm(default_form.Form):
-    contractorcode = default_form.CharField()
+class UserAddContractorForm(forms.Form):
+    contractorcode = forms.CharField()
 
     def clean_contractorcode(self):
         contractorcode = self.cleaned_data["contractorcode"]

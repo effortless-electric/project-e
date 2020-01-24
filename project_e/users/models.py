@@ -35,13 +35,6 @@ class UserManager(BaseUserManager):
 
     # First Name and Last Name do not cover name patterns
     # around the globe.
-    name = models.CharField(_("Name of User"), blank=True, max_length=255)
-    #dealer = models.ForeignKey(Dealer, blank=True, null=True, on_delete=models.CASCADE)
-    contractor = models.ForeignKey(Contractor, blank=True, null=True, on_delete=models.CASCADE)
-    dealership = models.ForeignKey(Dealer, blank=True, null=True, on_delete=models.CASCADE)
-    sales = models.BooleanField(default=False)
-    verified = models.BooleanField(default=False)
-
     def create_superuser(self, email, full_name=None, password=None):
         user = self.create_user(
                 email,
@@ -54,12 +47,18 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser):
-    email       = models.EmailField(max_length=255, unique=True)
-    full_name   = models.CharField(max_length=255, blank=True, null=True)
-    active      = models.BooleanField(default=True) # can login 
-    staff       = models.BooleanField(default=False) # staff user non superuser
-    admin       = models.BooleanField(default=False) # superuser 
-    timestamp   = models.DateTimeField(auto_now_add=True)
+    email = models.EmailField(max_length=255, unique=True)
+    full_name = models.CharField(max_length=255, blank=True, null=True)
+    active = models.BooleanField(default=True) # can login 
+    staff = models.BooleanField(default=False) # staff user non superuser
+    admin = models.BooleanField(default=False) # superuser 
+    timestamp = models.DateTimeField(auto_now_add=True)
+    name = models.CharField("Name of User", blank=True, max_length=255)
+    #dealer = models.ForeignKey(Dealer, blank=True, null=True, on_delete=models.CASCADE)
+    contractor = models.ForeignKey(Contractor, blank=True, null=True, on_delete=models.CASCADE)
+    dealership = models.ForeignKey(Dealer, blank=True, null=True, on_delete=models.CASCADE)
+    sales = models.BooleanField(default=False)
+    verified = models.BooleanField(default=False)
     
 
     USERNAME_FIELD = 'email' 
