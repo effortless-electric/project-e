@@ -6,12 +6,18 @@
 {% block scss %} {% static 'css/pages/home.css' %} {% endblock scss%}
 
 {% block banner %}
-<div class="home-page__banner" alt="logo">
+<div class="banner" 
+     alt="logo" 
+     style="background: url( {% static 'images/icons/image.svg' %}) no-repeat center center fixed;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: 50% 50%;">
     <div class="home-page__header">Rethink Charging.</div>
     <div class="home-page__form-container"> 
         <form class="home-page__form"> 
-            <input type="text" class="home-page__form-input">
-            <button type="submit" class="home-page__form-button"> Schedule Demo </button> 
+            <input type="text" class="home-page__form-input" placeholder="Email Address">
+            <button type="submit" class="home-page__button"> Schedule Demo </button> 
         </form>
     </div> 
 
@@ -72,19 +78,27 @@
         </div>
     </div>
 
-        <div class="home-page-features__row">
-            <div class="home-page-features__blurb">
-                <div class="home-page-features__icon"></div>
-                <div class="home-page-features__text">Praesent sit amet ultriceS
-    
-                        Aliquam non sodales nisl. Suspendisse varius mattis turpis, blandit tincidunt leo rhoncus nec.</div>
-            </div>
-            <div class="home-page-features__blurb">
-                <div class="home-page-features__icon"></div>
-                <div class="home-page-features__text">Praesent sit amet ultriceS
-    
-                        Aliquam non sodales nisl. Suspendisse varius mattis turpis, blandit tincidunt leo rhoncus nec.</div>
-            </div>
+    <div class="home-page-features__row">
+        <div class="home-page-features__blurb">
+            <div class="home-page-features__icon"></div>
+            <div class="home-page-features__text">Praesent sit amet ultriceS
+
+                    Aliquam non sodales nisl. Suspendisse varius mattis turpis, blandit tincidunt leo rhoncus nec.</div>
         </div>
+        <div class="home-page-features__blurb">
+            <div class="home-page-features__icon"></div>
+            <div class="home-page-features__text">Praesent sit amet ultriceS
+
+                    Aliquam non sodales nisl. Suspendisse varius mattis turpis, blandit tincidunt leo rhoncus nec.</div>
+        </div>
+    </div>
+</div>
+
+<div class="home-page-footer"> 
+    <div class="home-page-footer__message">
+            Maecenas ligula nisi, sodales sed nibh id, hendrerit commodo magna. Duis a lorem ut tellus dictum.
+    </div>
+
+    <div class="home-page__button">Contact Us</div>
 </div>
 {% endblock banner %}

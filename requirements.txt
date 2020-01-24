@@ -1,0 +1,5 @@
+# PRECAUTION: avoid production dependencies that aren't in development
+# WARNING: THIS IS STRICTLY FOR DEPLOYMENT BUILDPACK
+# USE requirements/
+-r requirements/base.txt
+-r requirements/production.txt

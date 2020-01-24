@@ -77,7 +77,10 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     "project_e.users.apps.UsersConfig",
-    "project_e.dealers.apps.DealersConfig"
+    "project_e.dealers.apps.DealersConfig",
+    "project_e.contractors.apps.ContractorsConfig",
+    "project_e.customers.apps.CustomersConfig",
+    "project_e.jobs.apps.JobsConfig"
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -221,7 +224,9 @@ EMAIL_TIMEOUT = 5
 # Django Admin URL.
 ADMIN_URL = "admin/"
 # https://docs.djangoproject.com/en/dev/ref/settings/#admins
-ADMINS = [("""willem drescher""", "willemdrescher@yahoo.com")]
+ADMINS = [("""willem drescher""", "willemdrescher@yahoo.com"), ('Andy Fleming', 'andy.fleming26@gmail.com')]
+
+#ADMINS = [('Andy Fleming', 'andy.fleming26@gmail.com')]
 # https://docs.djangoproject.com/en/dev/ref/settings/#managers
 MANAGERS = ADMINS
 

@@ -30,7 +30,7 @@ function pathsConfig(appName) {
     app: this.app,
     templates: `${this.app}/templates`,
     css: `${this.app}/static/css`,
-    sass: `${this.app}/static/sass`,
+    sass: `${this.app}/static/sass/**/**`,
     fonts: `${this.app}/static/fonts`,
     images: `${this.app}/static/images`,
     js: `${this.app}/static/js`,
@@ -54,7 +54,7 @@ function styles() {
       cssnano({ preset: 'default' })   // minify result
   ]
 
-  return src(`${paths.sass}/**/**.scss`)
+  return src(`${paths.sass}.scss`)
       .pipe(sass({
         includePaths: [
           
@@ -111,7 +111,7 @@ function initBrowserSync() {
 
 // Watch
 function watchPaths() {
-  watch(`${paths.sass}/**/**.scss`, styles)
+  watch(`${paths.sass}.scss`, styles)
   watch(`${paths.templates}/**/*.html`).on("change", reload)
   watch([`${paths.js}/*.js`, `!${paths.js}/*.min.js`], scripts).on("change", reload)
 }

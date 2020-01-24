@@ -18,7 +18,7 @@
           <a href="#" class="btn btn-danger">Coming soon: Statistics</a>
         {% endif %}
 
-        {% if request.user.sales == True %} <a href="" class="btn btn-primary"> Start a job </a>{% endif %}
+        {% if request.user.sales == True %} <a href="{% url 'users:add-customer' %}" class="btn btn-primary"> Add a customer and start their job </a>{% endif %}
 
   </div>
 

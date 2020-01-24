@@ -1,25 +1,23 @@
-{% extends "form.html" %}
+{% extends "home-form.html" %}
 
 {% load i18n %}
 {% load crispy_forms_tags %}
 
 {% block head_title %}{% trans "Sign Up" %}{% endblock %}
 
-{% block form_header %} {% trans "Sign Up" %} {% endblock %}
-{% block form_message%} {% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}
-{% endblock %}
+{% block form_title %}Create an Account{% endblock %}
 
+{% block sub_message %}Already have an account? <a href="{% url 'account_login' %}">Join</a> {% endblock %} 
 {% block form %}
-<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-  {% csrf_token %}
-  {{ form|crispy }}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
-
-  {% block actions %}
-    <button class="btn btn-primary" type="submit">{% trans "Sign Up" %}</button>
-  {% endblock actions %}
-</form>
+    <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+      {% csrf_token %}
+      {{ form|crispy }}
+      {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" class="home-form__input"/>
+      {% endif %}
+        <button class="home-form__button" type="submit">{% trans "Sign Up" %}</button>
+    </form>
 {% endblock form %}
+
+
 

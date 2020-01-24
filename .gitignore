@@ -156,6 +156,7 @@ typings/
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+.vscode/
 
 
 
@@ -284,3 +285,5 @@ project_e/media/
 .pytest_cache/
 
 ./tcl/
+
+project_e/static/css

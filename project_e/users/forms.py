@@ -2,6 +2,10 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
+from project_e.dealers.models import Dealer
+from project_e.contractors.models import Contractor
+#from project_e.customers.models import Customer
+#from project_e.customers.forms import DealerAddCustForm
 
 User = get_user_model()
 
@@ -91,3 +95,21 @@ class SignUpForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+
+class UserAddDealerForm(default_form.Form):
+    dealercode = default_form.CharField()
+
+    def clean_dealercode(self):
+        dealercode = self.cleaned_data["dealercode"]
+        if not Dealer.objects.get(id=dealercode):
+            raise forms.ValidationError("You have forgotten about Fred!")
+        return dealercode
+
+class UserAddContractorForm(default_form.Form):
+    contractorcode = default_form.CharField()
+
+    def clean_contractorcode(self):
+        contractorcode = self.cleaned_data["contractorcode"]
+        if not Contractor.objects.get(id=contractorcode):
+            raise forms.ValidationError("You have forgotten about Fred!")
+        return contractorcode
