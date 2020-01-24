@@ -5,7 +5,7 @@
 
 {% block content %}
   <div class="container">
-        <h2>Hi {{ object.username }}</h2>
+        <h2> {{ object.username }}</h2>
         {% if object.name %}
           <p>{{ object.name }}</p>
         {% endif %}
@@ -25,7 +25,7 @@
 {% if object == request.user %}
 <!-- Action buttons -->
     <a class="btn btn-primary" href="{% url 'users:update' %}" role="button">My Info</a>
-    <a class="btn btn-primary" href="{% url 'account_email' %}" role="button">E-Mail</a>
+    <a class="btn btn-primary" href="{% url 'account_email' %}" role="button">Personal Information</a>
     <!-- Your Stuff: Custom user template urls -->
 <!-- End Action buttons -->
 {% endif %}
