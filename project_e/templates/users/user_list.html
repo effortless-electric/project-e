@@ -14,7 +14,7 @@
             <hr>
             {% for user in verified %} 
                 <div class="sales-user">
-                    <div> {{ user.username }} </div>
+                    <div> {{ user.email }} </div>
                     <a href="{% url 'users:remove' user_id=user.pk %}"><button class="btn btn-danger"> Remove User </button></a>
                 </div>
             {% endfor %}

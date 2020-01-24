@@ -5,6 +5,10 @@ from django.views.generic import DetailView, RedirectView, UpdateView, FormView
 from django.contrib import messages
 from django.utils.translation import ugettext_lazy as _
 from project_e.dealers.models import Dealer
+from project_e.users.models import User
+from django.shortcuts import render, redirect
+from django.contrib.auth import login, authenticate
+from .forms import SignUpForm
 
 from project_e.contractors.models import Contractor
 from project_e.contractors.forms import ContractorCreationForm
@@ -19,11 +23,37 @@ from project_e.jobs.models import Job
 
 User = get_user_model()
 
+class UserView(DetailView):
+    template_name = 'users/profile.html'
+
+    def get_object(self):
+        return self.request.user
+
+
+def signup(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(request, email=user.email, password=raw_password)
+            if user is not None:
+                login(request, user)
+            else:
+                print("user is not authenticated")
+            return redirect('users:profile')
+    else:
+        form = SignUpForm()
+    return render(request, 'users/signup.html', {'form': form})
+
+
+    
+
 class UserDetailView(LoginRequiredMixin, DetailView):
 
     model = User
-    slug_field = "username"
-    slug_url_kwarg = "username"
+    slug_field = "email"
+    slug_url_kwarg = "email"
 
 
 user_detail_view = UserDetailView.as_view()
@@ -31,13 +61,13 @@ user_detail_view = UserDetailView.as_view()
 class UserUpdateView(LoginRequiredMixin, UpdateView):
 
     model = User
-    fields = ["name", "dealership"]
+    fields = ["dealership"]
 
     def get_success_url(self):
-        return reverse("users:detail", kwargs={"username": self.request.user.username})
+        return reverse("users:detail", kwargs={"email": self.request.user.email})
 
     def get_object(self):
-        return User.objects.get(username=self.request.user.username)
+        return User.objects.get(email=self.request.user.email)
 
     def form_valid(self, form):
         messages.add_message(
@@ -53,7 +83,7 @@ class UserRedirectView(LoginRequiredMixin, RedirectView):
     permanent = False
 
     def get_redirect_url(self):
-        return reverse("users:detail", kwargs={"username": self.request.user.username})
+        return reverse("users:detail", kwargs={"email": self.request.user.email})
 
 
 user_redirect_view = UserRedirectView.as_view()
@@ -110,7 +140,7 @@ class UserAddDealerView(LoginRequiredMixin, RedirectView):
         self.request.user.sales = True
         self.request.user.verified = False
         self.request.user.save(update_fields=['dealership', 'sales', 'verified'])
-        return reverse("users:detail", kwargs={"username": self.request.user.username})
+        return reverse("users:detail", kwargs={"email": self.request.user.email})
 
 user_add_dealer_view = UserAddDealerView.as_view()
 
