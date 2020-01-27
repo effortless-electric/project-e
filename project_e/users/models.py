@@ -3,6 +3,10 @@ from django.contrib.auth.models import (
     AbstractBaseUser, BaseUserManager
 )
 from django.urls import reverse
+from django.core.mail import send_mail
+
+from allauth.account.utils import user_pk_to_url_str
+from allauth.account.forms import EmailAwarePasswordResetTokenGenerator
 
 from project_e.dealers.models import Dealer
 from project_e.contractors.models import Contractor
@@ -91,6 +95,15 @@ class User(AbstractBaseUser):
     @property
     def is_active(self):
         return self.active
+
+    def send_reset_email(self, request): 
+        subject = "account creation"
+        message = "Hi please click here to set your password"
+        
+        token_generator = EmailAwarePasswordResetTokenGenerator()
+        temp_key = token_generator.make_token(self)
+        link = request.build_absolute_uri(reverse("account_reset_password_from_key", kwargs=dict(uidb36=user_pk_to_url_str(self), key=temp_key)))
+        send_mail(subject, message + link, "from_email", [self.email], fail_silently=True)
 
 
 
