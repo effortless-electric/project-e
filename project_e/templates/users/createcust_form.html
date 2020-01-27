@@ -8,7 +8,7 @@
 
 {% block page_content %}
   <div class="customer-creation">
-    <form class="form-horizontal" method="post" action="{% url 'users:add-customer' %}">
+    <form class="form-horizontal" method="post" action="{% url 'jobs:create' %}">
       {% if form.errors %}
         form.errors
       {% endif %}
