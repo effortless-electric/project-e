@@ -82,17 +82,16 @@ class DealerCreateEmployeeView(LoginRequiredMixin, FormView):
         full_name = form.cleaned_data["first_name"] + ' ' + form.cleaned_data["last_name"]
         user_email = form.cleaned_data["email"]
         user = User.objects.filter(email=user_email)
-        if not user:
+        if user:
+            user = User.objects.get(email=user_email) 
+        else:
             user = User.objects.create_user(user_email, full_name, "testaccount")
         user.dealership = self.request.user.dealership
         user.sales = True
         user.save()
 
-        subject = "account creation"
-        message = "Hi please click here to set your password "
-
-        user.email_user(subject, message, from_email=None)
-
+        user.send_reset_email(self.request)
+        
         messages.add_message(
             self.request, messages.INFO, "Associate Created Successfully"
         )

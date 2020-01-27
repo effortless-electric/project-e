@@ -272,6 +272,7 @@ ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_ADAPTER = "project_e.users.adapters.AccountAdapter"
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 SOCIALACCOUNT_ADAPTER = "project_e.users.adapters.SocialAccountAdapter"
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL=True
 
 
 # Your stuff...
