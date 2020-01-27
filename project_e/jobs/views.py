@@ -37,7 +37,7 @@ class JobCreationView(LoginRequiredMixin, FormView):
         if existing_user: 
             user = existing_user
         else: 
-            user = User.objects.create_user(user_email, full_name, "newpass123")
+            user = User.objects.create_user(user_email, full_name, "newpass123") # replace password with one time pass
 
         Job.objects.create(
             customer=user,

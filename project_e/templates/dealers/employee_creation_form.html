@@ -8,14 +8,16 @@
 
 {% block page_content %}
   <div class="customer-creation">
-    <form class="form-horizontal" method="post" action="{% url 'jobs:create' %}">
+    <form class="form-horizontal" method="post" action="{% url 'dealers:employee-create' %}">
       {% if form.errors %}
         form.errors
       {% endif %}
       {% csrf_token %}
       {{ form|crispy }}
       <div class="customer-creation__actions">
-        <button type="reset" class="button--gray">Cancel</button>     
+        <a href="{% url 'dealers:verify'%}">
+            <div class="button--gray">Cancel</div>     
+        </a>
         <button type="submit" class="button--blue">Submit</button>
       </div>
     </form>

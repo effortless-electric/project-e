@@ -24,7 +24,9 @@
                 </div>
             {% endfor %}
         </div>
-        <button class="button--blue" href="">Add associate</button>
+        <a href="{% url 'dealers:employee-create' %}">
+            <button class="button--blue" >Add associate</button>
+        </a>
         {% else %}
             No new associates, try sending the link out to your employees
         {% endif %}
