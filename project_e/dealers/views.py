@@ -5,6 +5,8 @@ from django.contrib.auth import get_user_model
 from django.urls import reverse
 from project_e.dealers.models import Dealer
 from project_e.customers.models import Customer
+from django.shortcuts import render
+from project_e.jobs.models import Job
 
 User = get_user_model()
 
@@ -40,6 +42,15 @@ class DealerVerifyView(LoginRequiredMixin, ListView):
         dealer = self.request.user.dealership
         return User.objects.filter(dealership=dealer)
 
+class DealerAnalyticsView(LoginRequiredMixin, ListView):
+    queryset = Job.objects.all()
+    template_name = 'dealers/dealer_analytics.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(DealerAnalyticsView, self).get_context_data(*args, **kwargs)
+        context['analytics_list'] = Job.objects.filter(dealer_id=self.request.user.dealership)
+        return context
+    
 class DealerDetailView(LoginRequiredMixin, DetailView):
     model = Dealer
 
@@ -52,3 +63,4 @@ dealer_user_verify_view = DealerVerifyView.as_view()
 dealer_detail_view = DealerDetailView.as_view()
 dealer_creation_view = DealerCreationView.as_view()
 dealer_addcust_view = DealerAddCustView.as_view()
+dealer_analytics_view = DealerAnalyticsView.as_view()
