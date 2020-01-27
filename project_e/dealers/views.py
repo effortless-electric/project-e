@@ -104,3 +104,4 @@ dealer_addcust_view = DealerAddCustView.as_view()
 dealer_jobs_view = DealerJobsView.as_view()
 dealer_employee_detail = DealerEmployeeView.as_view()
 dealer_create_employee = DealerCreateEmployeeView.as_view()
+
