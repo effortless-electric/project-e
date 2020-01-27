@@ -1,0 +1,21 @@
+{% extends "users/dealer_user.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block child_scss %} {% static 'css/dealers/dealer_jobs.css' %} {% endblock child_scss %}
+
+{% block page_header %}{{ user.username }}{% endblock %}
+
+{% block page_content %}
+  <div class="dealer-jobs">
+    {{jobs.size}}
+
+    {% for job in jobs %}
+      {{job.customer.id}}
+      {{job.seller.username}}
+      {{job.dealership.name}}
+      {{job.vin}}
+      {{job.notes}}
+    {% endfor %}
+  </div>
+{% endblock page_content %}

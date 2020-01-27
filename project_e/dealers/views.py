@@ -24,10 +24,11 @@ class DealerCreationView(CreateView):
     def get_success_url(self):
         self.request.user.dealership = self.object
         self.request.user.save(update_fields=["dealership"])
-        return super(DealerCreationView, self).get_success_url()
+        return self.request.user.get_absolute_url()
 
 class DealerVerifyView(LoginRequiredMixin, ListView):
     queryset = User.objects.all()
+    template_name = 'dealers/dealer_employees.html'
 
     def get_context_data(self, *args, **kwargs):
         context = super(DealerVerifyView, self).get_context_data(*args, **kwargs)
@@ -35,7 +36,6 @@ class DealerVerifyView(LoginRequiredMixin, ListView):
         context['verified'] = context["user_list"].filter(verified=True)
         context['unverified'] = context["user_list"].filter(verified=False)
         return context
-
 
     def get_queryset(self):
         dealer = self.request.user.dealership
@@ -57,9 +57,29 @@ class DealerAddCustView(LoginRequiredMixin, CreateView):
     model = Customer
     fields = ["cust_email", "cust_address", "fname", "lname", "phone", "vin", "car_make", "car_model"]
 
+class DealerJobsView(LoginRequiredMixin, ListView): 
+    queryset = Job.objects.all()
+    template_name = 'dealers/dealer_jobs.html'
+
+    def get_context_data(self, *args, **kwargs): 
+        context = super(DealerJobsView, self).get_context_data(*args, **kwargs)
+        context['jobs'] = Job.objects.filter(dealership=self.request.user.dealership)
+        return context
+
+class DealerEmployeeView(LoginRequiredMixin, DetailView):
+    model = User
+    template_name = "dealers/dealer_employee_detail.html"
+
+    def get_context_data(self, *args, **kwargs): 
+        context = super(DealerEmployeeView, self).get_context_data(*args, **kwargs)
+        salesman = kwargs['object']
+        context['jobs'] = Job.objects.filter(seller=salesman)
+        return context
 
 dealer_user_verify_view = DealerVerifyView.as_view()
 dealer_detail_view = DealerDetailView.as_view()
 dealer_creation_view = DealerCreationView.as_view()
 dealer_addcust_view = DealerAddCustView.as_view()
 dealer_analytics_view = DealerAnalyticsView.as_view()
+dealer_jobs_view = DealerJobsView.as_view()
+dealer_employee_detail = DealerEmployeeView.as_view()

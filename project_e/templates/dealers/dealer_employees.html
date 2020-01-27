@@ -1,0 +1,35 @@
+{% extends "users/dealer_user.html" %}
+{% load static %}
+
+{% block title %}Effortless Electric{% endblock %}
+{% block child_scss %} {% static "css/dealers/dealer_employees.css" %} {% endblock child_scss %}
+
+{% block page_content %}
+    
+    <div>Your link to add new users is: <a href="">{{ url }}</a></div>
+
+    {% if request.user.dealership.admin == request.user %}
+        {% if user_list %}
+        <div class="dealer-employees__users">
+            {% for user in user_list %}
+                <div class="dealer-employees-user__container">
+                    <div> {% if user.full_name %} {{user.full_name}} {% else %} {{ user.email }} {% endif %}</div>
+                    <div> {% if user.verified %} Verified {% else %} Unverified {% endif %} </div>
+                    <div> {{ user.dealership.name }} </div>
+                    <a href="{% url "dealers:employee-detail" pk=user.id %}">
+                        <div>View <img src="{% static 'images/favicons/right-caret.svg' %}" alt=""></div>
+                    </a>
+                    {% comment %} <a href="{% url 'users:remove' user_id=user.pk %}"><button class="btn btn-danger"> Remove User </button></a>
+                    <a href="{% url 'users:verify' user_id=user.pk%}"><button> Verify </button></a> {% endcomment %}
+                </div>
+            {% endfor %}
+        </div>
+        <button class="button--blue" href="">Add associate</button>
+        {% else %}
+            No new associates, try sending the link out to your employees
+        {% endif %}
+    {% else %}
+        <div>Sorry only admins can add sales</div>
+    {% endif %}
+{% endblock page_content %}
+

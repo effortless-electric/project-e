@@ -17,3 +17,5 @@ django-hashid-field
 # Django REST Framework
 djangorestframework==3.10.3  # https://github.com/encode/django-rest-framework
 coreapi==2.3.3  # https://github.com/core-api/python-client
+django-phonenumber-field # https://github.com/stefanfoulis/django-phonenumber-field
+phonenumbers

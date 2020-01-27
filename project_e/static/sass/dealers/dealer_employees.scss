@@ -1,0 +1,26 @@
+@import '../custom_bootstrap_vars.scss'; 
+
+.dealer-employees {
+
+    &__users {
+        display: flex;
+        flex-flow: column wrap; 
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    &-user {
+        &__container {
+            height: 80px; 
+            display: flex; 
+            flex-flow: row wrap; 
+            justify-content: space-between;
+            align-items: center;
+            width: 100%; 
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid $ee-light-gray; 
+        }
+    }
+}
