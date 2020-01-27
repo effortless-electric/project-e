@@ -6,8 +6,6 @@
 
 {% block page_content %}
     
-    <div>Your link to add new users is: <a href="">{{ url }}</a></div>
-
     {% if request.user.dealership.admin == request.user %}
         {% if user_list %}
         <div class="dealer-employees__users">

@@ -93,8 +93,6 @@ class UserRedirectView(LoginRequiredMixin, RedirectView):
 
 user_redirect_view = UserRedirectView.as_view()
 
-
-
 class UserAddContractorView(LoginRequiredMixin, FormView):
     model = Contractor
     fields = ["cont_name", "cont_email", "fname", "lname", "phone", "address"]
@@ -134,7 +132,7 @@ class UserVerifyView(LoginRequiredMixin, RedirectView):
         if user:
             user.verified = not user.verified
             user.save(update_fields=['verified'])
-        return  reverse("dealers:verify")
+        return  reverse("dealers:employee-detail", kwargs={"pk": user.id})
 user_verify_view = UserVerifyView.as_view()
 
 class UserRemoveView(LoginRequiredMixin, RedirectView):

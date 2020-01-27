@@ -7,6 +7,7 @@ from django.core.mail import send_mail
 
 from allauth.account.utils import user_pk_to_url_str
 from allauth.account.forms import EmailAwarePasswordResetTokenGenerator
+from allauth.account.adapter import DefaultAccountAdapter
 
 from project_e.dealers.models import Dealer
 from project_e.contractors.models import Contractor
@@ -104,6 +105,8 @@ class User(AbstractBaseUser):
         temp_key = token_generator.make_token(self)
         link = request.build_absolute_uri(reverse("account_reset_password_from_key", kwargs=dict(uidb36=user_pk_to_url_str(self), key=temp_key)))
         send_mail(subject, message + link, "from_email", [self.email], fail_silently=True)
+        # DefaultAccountAdapter.confirm_email(self, request, self.email)
+        # DefaultAccountAdapter.send_confirmation_mail(self, request, self.email)
 
 
 
