@@ -1,7 +1,9 @@
 {
   "name": "project_e",
   "version": "1.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "chart.js": "^2.9.3"
+  },
   "devDependencies": {
     "gulp-concat": "^2.6.0",
     "autoprefixer": "^9.4.7",

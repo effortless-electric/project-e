@@ -12,6 +12,7 @@ class Dealer(models.Model):
     address = models.CharField(_("Address"), blank=False, max_length=500)
     name = models.CharField(_("Name"), blank=False, max_length=200)
     admin = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, on_delete=models.CASCADE)
+    
 
     def get_absolute_url(self):
         return reverse("dealers:detail", kwargs={"pk": self.ref_id.id})
