@@ -10,6 +10,7 @@
       <div class="user-detail-side-bar">
         <div class="user-detail-side-bar__title"> {{request.user.dealership.name}} </div>
         <hr>
+        <a href="{% url 'dealers:analytics' %}">
         <div class="user-detail-side-bar__tab">
           <img src="{% static 'images/icons/pie-chart.svg' %}"/>
           <div>Analytics</div> 
