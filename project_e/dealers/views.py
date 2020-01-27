@@ -5,7 +5,6 @@ from django.contrib.auth import get_user_model
 from django.urls import reverse
 from project_e.dealers.models import Dealer
 from project_e.customers.models import Customer
-from django.shortcuts import render
 from project_e.jobs.models import Job
 
 User = get_user_model()
