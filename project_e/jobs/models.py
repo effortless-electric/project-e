@@ -23,6 +23,7 @@ class Job(models.Model):
     pref_inst_day1 = models.DateTimeField(_("Preferred Installation Time 1"), blank=True, null=True)
     pref_inst_day2 = models.DateTimeField(_("Preferred Installation Time 2"), blank=True, null=True)
     pref_inst_day3 = models.DateTimeField(_("Preferred Installation Time 3"), blank=True, null=True)
+    selected_install_day = models.DateTimeField(_("Selected Time"), blank=True, null=True)
     vin = models.CharField(max_length=17, blank=True, null=True)
     car_make = models.CharField(max_length=100, blank=True, null=True)
     car_model = models.CharField(max_length=100, blank=True, null=True)
@@ -31,3 +32,9 @@ class Job(models.Model):
 
     def get_absolute_url(self):
         return reverse("jobs:detail", kwargs={"pk": self.id})
+
+    def get_status(self): 
+        return self.selected_install_day is not None if 'pending' else 'installing'
+
+    def get_install(self): 
+        return self.selected_install_day is None if self.pref_inst_day1 else self.selected_install_day
