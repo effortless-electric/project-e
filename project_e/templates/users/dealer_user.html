@@ -17,7 +17,7 @@
         </div>
         
         {% if request.user.sales == True %}
-          <a href="{% url 'users:add-customer' %}">
+          <a href="{% url 'jobs:create' %}">
             <div class="user-detail-side-bar__tab">
               <img src="{% static 'images/icons/create-job.svg' %}"/>
                 New Contract 
@@ -32,10 +32,12 @@
               Employees</div>
           </a> 
         {% endif %}
-        <div class="user-detail-side-bar__tab">
-          <img src="{% static 'images/icons/jobs.svg' %}"/>
-            Jobs
-        </div>
+        <a href="{% url 'dealers:job' %}">
+          <div class="user-detail-side-bar__tab">
+              <img src="{% static 'images/icons/jobs.svg' %}"/>
+                Jobs
+          </div>
+        </a>
       </div>
       
       <div class="user-detail__container"> 

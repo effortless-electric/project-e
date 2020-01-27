@@ -1,0 +1,48 @@
+{% extends "users/dealer_user.html" %}
+{% load static %}
+
+{% block title %}Effortless Electric{% endblock %}
+{% block child_scss %} {% static "css/dealers/dealer_employee_detail.css" %} {% endblock child_scss %}
+
+{% block page_content %}
+    <div class="dealer-employee-detail">
+        <table class="dealer-employee-detail__header">
+            <tr class="">
+                <td class="dealer-employee-detail__title">Name: </td>
+                <td>{{user.get_full_name}}</td>
+                <td class="dealer-employee-detail__title">Location:</td>
+                <td> {{user.dealership.address}}</td>
+            </tr> 
+            <tr>
+                <td class="dealer-employee-detail__title">Email: </td> 
+                <td>{{user.get_full_name}}</td>
+                <td class="dealer-employee-detail__title">Status:</td> 
+                <td> {% if user.verified %} Verified {% else %} Unverified {% endif %}<a href="{% url 'users:remove' user_id=user.pk %}">Remove</a></td>
+            </tr>
+        </table>
+        <hr>
+
+        <div class="dealer-employee-detail__jobs"> Jobs by user </div>
+        <div class="dealer-employee-detail__jobs-container">
+
+        {% for job in jobs%}
+            <div class="dealer-employee-detail__jobs-item">
+                <table class="dealer-employee-detail__jobs-table">
+                    <tr>
+                        <td><div class="dealer-employee-detail__title">Vehicle</div></td>
+                        <td><div class="dealer-employee-detail__title">Status</div></td>
+                        <td><div class="dealer-employee-detail__title">Deadline</div></td>
+                    </tr>
+                    <tr>
+                        <td>{{job.car_make}} {{job.car_model}}</td>
+                        <td> {{job.get_status}} </td>
+                        <td> {{job.get_install}} </td>
+                    </tr>
+                </table>
+                <a href="{% url 'jobs:detail' id=job.id%}">View <img src="{% static 'images/favicons/right-caret.svg' %}" alt=""></a>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+{% endblock page_content %}
+

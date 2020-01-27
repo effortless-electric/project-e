@@ -57,7 +57,7 @@ class UserDetailView(LoginRequiredMixin, DetailView):
     def get(self, *args, **kwargs):
         template_name = "users/user_detail.html"
         if self.request.user.dealership: 
-            template_name = "users/dealer_user.html"
+            template_name = "dealers/dealer_jobs.html"
         return render(self.request, template_name, kwargs)
 
             
@@ -93,28 +93,7 @@ class UserRedirectView(LoginRequiredMixin, RedirectView):
 
 user_redirect_view = UserRedirectView.as_view()
 
-class DealerAddCustomerView(LoginRequiredMixin, FormView):
-    model = Customer
-    fields = ["cust_email", "cust_address", "fname", "lname", "phone", "vin", "car_make", "car_model", "cust_id"]
-    template_name = "users/createcust_form.html"
-    form_class = DealerAddCustForm
 
-    def get_success_url(self):
-        return reverse("users:detail", kwargs={"username": self.request.user.username})
-
-    def get_object(self):
-        return User.objects.get(username=self.request.user.username)
-
-    def form_valid(self, form):
-        j = form.save()
-        #print(User.objects.get(self.request.dealership_id))
-        Job.objects.create(cust_id=j.id)
-
-        messages.add_message(
-            self.request, messages.INFO, _("Customer Info successfully updated and job started")
-        )
-        return super().form_valid(form)
-user_add_customer_view = DealerAddCustomerView.as_view()
 
 class UserAddContractorView(LoginRequiredMixin, FormView):
     model = Contractor

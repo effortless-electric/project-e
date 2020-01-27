@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import (
     AbstractBaseUser, BaseUserManager
 )
-
+from django.urls import reverse
 
 from project_e.dealers.models import Dealer
 from project_e.contractors.models import Contractor
@@ -60,12 +60,14 @@ class User(AbstractBaseUser):
     sales = models.BooleanField(default=False)
     verified = models.BooleanField(default=False)
     
-
     USERNAME_FIELD = 'email' 
     # USERNAME_FIELD is required by default but I changed it to email
     REQUIRED_FIELDS = [] #['full_name'] would go here if you want the users full name
 
     objects = UserManager()
+
+    def get_absolute_url(self):
+        return reverse("users:detail", kwargs={"id": self.id})
 
     def __str__(self):
         return self.email
