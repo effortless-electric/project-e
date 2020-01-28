@@ -45,7 +45,6 @@
             <a class="base-nav__item" href="{% url 'users:detail' request.user.id  %}">{% trans "My Profile" %}</a>
             <a class="base-nav__item" href="{% url 'account_logout' %}">{% trans "Sign Out" %}</a>
           {% else %}
-            <a id="sign-up-link" class="base-nav__item" href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a>
             <a id="log-in-link" class="base-nav__item" href="{% url 'account_login' %}">{% trans "Sign In" %}</a>
           {% endif %}
         </div>
