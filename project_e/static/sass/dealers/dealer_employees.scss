@@ -23,6 +23,12 @@
             border: 1px solid $ee-light-gray; 
         }
 
+        &__container:hover {
+            transform: translate(-1px, -1px);
+            // border: 1px solid $ee-dark-gray; 
+            box-shadow: 2px 2px 5px $ee-light-gray; 
+        }
+
         &__name {
             width: 40%; 
         }
@@ -39,10 +45,5 @@
         &__link {
             flex-grow: 1; 
         }
-    }
-
-    a {
-        text-decoration: unset;
-        display: flex;
     }
 }
