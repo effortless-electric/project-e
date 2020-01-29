@@ -262,3 +262,20 @@ hr {
   border: 0px solid white; 
   text-transform: uppercase;
 }
+
+.content-container {
+    height: 80px; 
+    display: flex; 
+    flex-flow: row wrap; 
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%; 
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid $ee-light-gray; 
+} 
+.content-container:hover {
+      transform: translate(-1px, -1px);
+      // border: 1px solid $ee-dark-gray; 
+      box-shadow: 2px 2px 5px $ee-light-gray; 
+}
