@@ -239,11 +239,22 @@ hr {
   &--gray {
     @extend .button; 
     background-color: $ee-gray;
+
+    &:hover {
+      @extend .button; 
+      background-color: $ee-dark-gray;
+    }
   }
 
   &--blue {
     @extend .button; 
     background-color: $ee-blue;
+  }
+
+  &--blue:hover {
+    background: linear-gradient(to top right, $ee-logo-blue 0%, $ee-logo-green 110%);
+    //transform: translateY(-1px); 
+    box-shadow: 2px 2px 5px $ee-gray; 
   }
 
   display: flex; 
@@ -267,15 +278,37 @@ hr {
     height: 80px; 
     display: flex; 
     flex-flow: row wrap; 
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     width: 100%; 
     padding: 10px;
     margin: 10px;
-    border: 1px solid $ee-light-gray; 
+    border: 1px solid $ee-light-gray;
+    
+    &__view {
+      display: flex;
+      flex-flow: column nowrap; 
+      justify-content: flex-start;
+      align-items: flex-end;
+  }
 } 
+
+
 .content-container:hover {
-      transform: translate(-1px, -1px);
+      transform: translate(0, -1px);
       // border: 1px solid $ee-dark-gray; 
       box-shadow: 2px 2px 5px $ee-light-gray; 
+}
+
+
+.page-content-container {
+  width: 80%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+
+  @media (max-width: 800px) {
+    width: 100%; 
+  }
 }

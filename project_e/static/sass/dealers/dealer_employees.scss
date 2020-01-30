@@ -7,7 +7,11 @@
         flex-flow: column wrap; 
         justify-content: center;
         align-items: center;
-        width: 100%;
+        width: 80%;
+
+        @media screen and (max-width: 1000px) {
+            width: 100%; 
+        }
     }
 
     &-user {
@@ -29,19 +33,19 @@
             box-shadow: 2px 2px 5px $ee-light-gray; 
         }
 
-        &__name {
-            width: 40%; 
-        }
+        &__item {
+            flex-grow: 1; 
+            max-width: 25%; 
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: flex-start;
+            align-items: center;
 
-        &__verified {
-            width: 15%;  
+            &--name {
+                @extend .dealer-employees-user__item;
+                max-width: 35%; 
+            }
         }
-
-        &__dealership {
-           width: 35%; 
-           
-        }
-
         &__link {
             flex-grow: 1; 
         }
