@@ -15,9 +15,12 @@
             </tr> 
             <tr>
                 <td class="dealer-employee-detail__title">Email: </td> 
-                <td>{{user.get_full_name}}</td>
+                <td>{{user.email}}</td>
                 <td class="dealer-employee-detail__title">Status:</td> 
-                <td> {% if user.verified %} Verified {% else %} Unverified {% endif %}<a href="{% url 'users:remove' user_id=user.pk %}">Remove</a></td>
+                <td> 
+                    {% if not user.verified %} <a href="{% url 'users:verify' user_id=user.id %}"> Verify </a> {% endif %}
+                    <a href="{% url 'users:remove' user_id=user.pk %}">Remove</a>
+                </td>
             </tr>
         </table>
         <hr>
@@ -26,7 +29,7 @@
         <div class="dealer-employee-detail__jobs-container">
 
         {% for job in jobs%}
-            <div class="dealer-employee-detail__jobs-item">
+            <div class="content-container">
                 <table class="dealer-employee-detail__jobs-table">
                     <tr>
                         <td><div class="dealer-employee-detail__title">Vehicle</div></td>
