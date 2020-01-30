@@ -2,9 +2,11 @@
 {% load static %}
 
 {% block title %}Effortless Electric{% endblock %}
-{% block child_scss %} {% static "css/dealers/dealer_employee_detail.css" %} {% endblock child_scss %}
+
+{% block child_scss %} {% static "css/dealers/dealer_employee_detail.css" %}{% endblock child_scss %}
 
 {% block page_content %}
+    <link href="{% static 'css/dealers/dealer_jobs.css' %}" rel="stylesheet">
     <div class="dealer-employee-detail">
         <table class="dealer-employee-detail__header">
             <tr class="">
@@ -30,19 +32,21 @@
 
         {% for job in jobs%}
             <div class="content-container">
-                <table class="dealer-employee-detail__jobs-table">
-                    <tr>
-                        <td><div class="dealer-employee-detail__title">Vehicle</div></td>
-                        <td><div class="dealer-employee-detail__title">Status</div></td>
-                        <td><div class="dealer-employee-detail__title">Deadline</div></td>
-                    </tr>
-                    <tr>
-                        <td>{{job.car_make}} {{job.car_model}}</td>
-                        <td> {{job.get_status}} </td>
-                        <td> {{job.get_install}} </td>
-                    </tr>
-                </table>
-                <a href="{% url 'jobs:detail' id=job.id%}">View <img src="{% static 'images/favicons/right-caret.svg' %}" alt=""></a>
+                <div class="dealer-jobs__col--vehicle">
+                    <div class="dealer-jobs__title">Vehicle</div>
+                    {{job.car_make}} {{job.car_model}}
+                </div>
+                <div class="dealer-jobs__col">
+                    <div class="dealer-jobs__title">Status</div>
+                    {{job.get_status}}
+                </div>
+                <div class="dealer-jobs__col">
+                    <div class="dealer-jobs__title">Deadline</div>
+                    {{job.get_install}} 
+                </div>
+                <div class="content-container__view">
+                    <a href="{% url 'jobs:detail' id=job.id%}">View <img src="{% static 'images/favicons/right-caret.svg' %}" alt=""></a>
+                </div>
             </div>
         {% endfor %}
         </div>
