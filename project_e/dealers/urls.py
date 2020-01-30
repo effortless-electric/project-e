@@ -1,5 +1,4 @@
 from django.urls import path
-
 from project_e.dealers.views import (
     dealer_creation_view, 
     dealer_detail_view, 
@@ -21,4 +20,5 @@ urlpatterns = [
     path("jobs/", view=dealer_jobs_view, name="job"), 
     path("sales/<int:pk>", view=dealer_employee_detail, name="employee-detail"), 
     path("new-associate/", view=dealer_create_employee, name="employee-create")
+
 ]
