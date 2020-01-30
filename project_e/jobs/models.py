@@ -29,7 +29,6 @@ class Job(models.Model):
     car_model = models.CharField(max_length=100, blank=True, null=True)
     notes = models.TextField(blank=True, null=True)
 
-
     def get_absolute_url(self):
         return reverse("jobs:detail", kwargs={"pk": self.id})
 

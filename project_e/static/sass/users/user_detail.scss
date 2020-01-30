@@ -22,7 +22,8 @@
         }
 
         &__tab:hover {
-            color: $ee-dark-gray;             
+            color: $ee-dark-gray;
+            transform: translateX(10px);              
         }
 
         &__tab {
@@ -35,6 +36,7 @@
             flex-flow: row wrap;
             justify-content: center;
             align-items: center;
+            transition: transform 0.2s linear;
         }
     }
 
@@ -49,8 +51,4 @@
     img {
         margin: 5px 10px 5px 0; 
     };
-}
-
-a:hover {
-    text-decoration: none;
 }

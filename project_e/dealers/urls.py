@@ -1,5 +1,4 @@
 from django.urls import path
-
 from project_e.dealers.views import (
     dealer_creation_view, 
     dealer_detail_view, 
@@ -17,5 +16,5 @@ urlpatterns = [
     path("verify/", view=dealer_user_verify_view, name="verify"),
     path("analytics/", view=dealer_analytics_view, name="analytics"),
     path("jobs/", view=dealer_jobs_view, name="job"), 
-    path("sales/<int:pk>", view=dealer_employee_detail, name="employee-detail")
+    path("sales/<int:pk>", view=dealer_employee_detail, name="employee-detail"),
 ]

@@ -1,7 +1,6 @@
 {% extends "users/dealer_user.html" %}
 {% load crispy_forms_tags %}
 {% load static %}
-
 {% block child_scss %} {% static 'css/dealers/dealer_analytics.css' %} {% endblock child_scss %}
 
 {% block page_header %}{{ user.username }}{% endblock %}
@@ -9,18 +8,18 @@
 {% block page_content %}
   <div class="dealer-analytics">
     <div class="dealer-analytics__row">
+            <div class="dealer-analytics__jobs" onclick="window.location='{% url "dealers:employee-detail" pk=user.id %}'">
+                <div class="dealer-analytics__jobs__statistics">18</div>
+                <div class="dealer-analytics__jobs__statistics-text">Jobs this month</div>
+            </div>
         <div class="dealer-analytics__jobs">
-            <div class="dealer-analytics__jobs__statistics">1</div>
-            <div class="dealer-analytics__jobs__statistics-text">Jobs this month</div>
-        </div>
-        <div class="dealer-analytics__jobs">
-            <div class="dealer-analytics__jobs__statistics">2</div>
+            <div class="dealer-analytics__jobs__statistics">13</div>
             <div class="dealer-analytics__jobs__statistics-text">Completed jobs</div>
         </div>
     </div>
     <div class="dealer-analytics__row">
         <div class="dealer-analytics__jobs">
-            <div class="dealer-analytics__jobs__statistics">3</div>
+            <div class="dealer-analytics__jobs__statistics">1</div>
             <div class="dealer-analytics__jobs__statistics-text">Jobs in-progress</div>
         </div>
         <div class="dealer-analytics__jobs">
@@ -29,7 +28,7 @@
         </div>
     </div>
     <div class="dealer-analytics__row">
-        <div class="dealer-analytics__graphics">GRAPHIC GOES IN HERE</div>
+        <div class="dealer-analytics__graphics">Graphic goes here</div>
     </div>
   </div>
 
