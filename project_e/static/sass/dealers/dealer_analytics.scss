@@ -18,15 +18,12 @@
 
         &__statistics{
             position: absolute;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif t;
-            font-style: normal; 
             display: flex;
             justify-content: center;
             align-items: center;
             width: 108px;
             height: 179px;
             margin-top: 10;
-            margin-bottom: 40px;
             font-size: 82px;
         }
         &__statistics-text{

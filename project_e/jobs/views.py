@@ -47,7 +47,7 @@ class JobCreationView(LoginRequiredMixin, FormView):
             vin=form.cleaned_data['vin'],
             car_make=form.cleaned_data['car_make'],
             car_model=form.cleaned_data['car_model'],
-            notes=form.cleaned_data['notes'],
+            notes=form.cleaned_data['notes']
         )
 
         messages.add_message(

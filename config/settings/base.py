@@ -72,8 +72,6 @@ THIRD_PARTY_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     "rest_framework",
-    "django_ajax",
-    #"clubs",
    # "phonenumber_field"
 ]
 
