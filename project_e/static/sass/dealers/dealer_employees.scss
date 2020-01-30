@@ -15,12 +15,35 @@
             height: 80px; 
             display: flex; 
             flex-flow: row wrap; 
-            justify-content: space-between;
+            justify-content: flex-start;
             align-items: center;
             width: 100%; 
             padding: 10px;
             margin: 10px;
             border: 1px solid $ee-light-gray; 
+        }
+
+        &__container:hover {
+            transform: translate(-1px, -1px);
+            // border: 1px solid $ee-dark-gray; 
+            box-shadow: 2px 2px 5px $ee-light-gray; 
+        }
+
+        &__name {
+            width: 40%; 
+        }
+
+        &__verified {
+            width: 15%;  
+        }
+
+        &__dealership {
+           width: 35%; 
+           
+        }
+
+        &__link {
+            flex-grow: 1; 
         }
     }
 }

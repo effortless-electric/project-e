@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %} Create dealer {% endblock title %}
-
 {% block scss %} {% static 'css/pages/home.css' %} {% endblock scss%}
 
 {% block banner %}
@@ -14,11 +12,10 @@
             background-attachment: fixed;
             background-position: 50% 50%;">
     <div class="home-page__header">Rethink Charging.</div>
-    <div class="home-page__form-container"> 
-        <form class="home-page__form"> 
-            <input type="text" class="home-page__form-input" placeholder="Email Address">
-            <button type="submit" class="button"> Schedule Demo </button> 
-        </form>
+    <div class="home-page__arrows-container"> 
+        <div class="home-page__arrows"> </div>
+        <div class="home-page__arrows"> </div>
+        <div class="home-page__arrows"> </div>
     </div> 
 
 </div> 

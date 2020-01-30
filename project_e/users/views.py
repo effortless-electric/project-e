@@ -4,13 +4,14 @@ from django.urls import reverse
 from django.views.generic import DetailView, RedirectView, UpdateView, FormView
 from django.contrib import messages
 from django.utils.translation import ugettext_lazy as _
-from django.shortcuts import render
-
-from project_e.dealers.models import Dealer
-from project_e.users.models import User
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
-from .forms import SignUpForm
+
+from project_e.dealers.models import Dealer
+from project_e.dealers.views import dealer_analytics_view
+
+from project_e.users.models import User
+
 
 from project_e.contractors.models import Contractor
 from project_e.contractors.forms import ContractorCreationForm
@@ -19,6 +20,8 @@ from project_e.customers.models import Customer
 from project_e.customers.forms import DealerAddCustForm
 
 from project_e.jobs.models import Job
+
+from .forms import SignUpForm
 
 #from project_e.jobs.models import Job
 #from project_e.jobs.forms import Form
@@ -57,9 +60,8 @@ class UserDetailView(LoginRequiredMixin, DetailView):
     def get(self, *args, **kwargs):
         template_name = "users/user_detail.html"
         if self.request.user.dealership: 
-            template_name = "dealers/dealer_jobs.html"
+            return dealer_analytics_view(self.request)
         return render(self.request, template_name, kwargs)
-
             
 user_detail_view = UserDetailView.as_view()
 
@@ -92,8 +94,6 @@ class UserRedirectView(LoginRequiredMixin, RedirectView):
 
 
 user_redirect_view = UserRedirectView.as_view()
-
-
 
 class UserAddContractorView(LoginRequiredMixin, FormView):
     model = Contractor
@@ -134,7 +134,7 @@ class UserVerifyView(LoginRequiredMixin, RedirectView):
         if user:
             user.verified = not user.verified
             user.save(update_fields=['verified'])
-        return  reverse("dealers:verify")
+        return  reverse("dealers:employee-detail", kwargs={"pk": user.id})
 user_verify_view = UserVerifyView.as_view()
 
 class UserRemoveView(LoginRequiredMixin, RedirectView):

@@ -1,10 +1,14 @@
 from django.views.generic.edit import CreateView
-from django.views.generic import DetailView, ListView
+from django.views.generic import DetailView, ListView, FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import get_user_model
 from django.urls import reverse
+from django.contrib import messages
+
 from project_e.dealers.models import Dealer
+from project_e.dealers.forms import EmployeeCreationForm
 from project_e.customers.models import Customer
+from django.shortcuts import render
 from project_e.jobs.models import Job
 
 User = get_user_model()
@@ -76,6 +80,33 @@ class DealerEmployeeView(LoginRequiredMixin, DetailView):
         context['jobs'] = Job.objects.filter(seller=salesman)
         return context
 
+class DealerCreateEmployeeView(LoginRequiredMixin, FormView): 
+    model = User
+    template_name = "dealers/employee_creation_form.html"
+    form_class = EmployeeCreationForm
+
+    def get_success_url(self): 
+        return reverse("dealers:verify")
+
+    def form_valid(self, form): 
+        full_name = form.cleaned_data["first_name"] + ' ' + form.cleaned_data["last_name"]
+        user_email = form.cleaned_data["email"]
+        user = User.objects.filter(email=user_email)
+        if user:
+            user = User.objects.get(email=user_email) 
+        else:
+            user = User.objects.create_user(user_email, full_name, "testaccount")
+        user.dealership = self.request.user.dealership
+        user.sales = True
+        user.save()
+
+        user.send_reset_email(self.request)
+        
+        messages.add_message(
+            self.request, messages.INFO, "Associate Created Successfully"
+        )
+        return super().form_valid(form)
+
 dealer_user_verify_view = DealerVerifyView.as_view()
 dealer_detail_view = DealerDetailView.as_view()
 dealer_creation_view = DealerCreationView.as_view()
@@ -83,3 +114,5 @@ dealer_addcust_view = DealerAddCustView.as_view()
 dealer_analytics_view = DealerAnalyticsView.as_view()
 dealer_jobs_view = DealerJobsView.as_view()
 dealer_employee_detail = DealerEmployeeView.as_view()
+dealer_create_employee = DealerCreateEmployeeView.as_view()
+

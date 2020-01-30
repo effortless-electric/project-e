@@ -13,7 +13,7 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
 
-    <link rel="icon" href="{% static 'images/logos/tab-logo.png' %}">
+    <link rel="icon" href="{% static 'images/logos/logo-crest.svg' %}">
 
     {% block css %}
     
@@ -39,7 +39,7 @@
     <div class="mb-1">
       <nav class="base-nav">
         <a class="navbar-brand nav-logo-container" href="{% url 'home' %}">
-          <img class="nav-logo" src="{% static 'images/logos/logo-black.svg' %}" alt="logo">
+          <img class="nav-logo" src="{% static 'images/logos/main-logo-no-margin.svg' %}" alt="logo">
         </a>
         <div class="base-nav__container">
           {% if request.user.is_authenticated %}
