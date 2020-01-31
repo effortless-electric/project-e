@@ -1,6 +1,6 @@
 import datetime
 
-from django.views.generic import DetailView, FormView
+from django.views.generic import UpdateView, FormView
 from django.urls import reverse
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -13,8 +13,15 @@ from project_e.jobs.models import Job
 
 User = get_user_model()
 
-class JobDetailView(LoginRequiredMixin, DetailView): 
+class JobDetailView(LoginRequiredMixin, UpdateView):
     model = Job
+    fields = ['vin', 'car_make', 'car_model', 'notes']
+
+    def form_valid(self, form): 
+        messages.add_message(
+            self.request, messages.INFO, "Job successfully updated"
+        )
+        return super().form_valid(form)
 
 job_detail_view = JobDetailView.as_view()
 

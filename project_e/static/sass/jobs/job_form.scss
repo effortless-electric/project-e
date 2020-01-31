@@ -1,0 +1,39 @@
+.job-form {
+    display: flex;
+    width: 70%; 
+    flex-flow: column wrap; 
+    @media screen and (max-width: 800px) {
+        width: 100%; 
+    }
+
+    &__container {
+        width: 90%; 
+        margin: auto; 
+        @media screen and (max-width: 550px) {
+            width: 100%; 
+        }
+    }
+
+
+    &__header {
+        font-size: 36px; 
+        margin: 10px auto 30px; 
+    }
+
+    &__fields {
+        display: flex;
+        flex-flow: row wrap; 
+        justify-content: flex-start;
+        align-items: center;
+        margin-bottom: 20px; 
+    }
+
+    &__item {
+        margin: 5px; 
+        flex-basis: 47%; 
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
