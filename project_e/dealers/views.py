@@ -39,6 +39,7 @@ class DealerVerifyView(LoginRequiredMixin, ListView):
         context['url'] = self.request.build_absolute_uri(reverse('users:add-dealer', kwargs={'ref_id':self.request.user.dealership.ref_id}))
         context['verified'] = context["user_list"].filter(verified=True)
         context['unverified'] = context["user_list"].filter(verified=False)
+        context['user_list'] = context['user_list'].order_by('timestamp')
         return context
 
     def get_queryset(self):
@@ -67,7 +68,7 @@ class DealerJobsView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, *args, **kwargs): 
         context = super(DealerJobsView, self).get_context_data(*args, **kwargs)
-        context['jobs'] = Job.objects.filter(dealership=self.request.user.dealership)
+        context['jobs'] = Job.objects.filter(dealership=self.request.user.dealership).order_by('sale_date')
         return context
 
 class DealerEmployeeView(LoginRequiredMixin, DetailView):
@@ -77,7 +78,7 @@ class DealerEmployeeView(LoginRequiredMixin, DetailView):
     def get_context_data(self, *args, **kwargs): 
         context = super(DealerEmployeeView, self).get_context_data(*args, **kwargs)
         salesman = kwargs['object']
-        context['jobs'] = Job.objects.filter(seller=salesman)
+        context['jobs'] = Job.objects.filter(seller=salesman).order_by('sale_date')
         return context
 
 class DealerCreateEmployeeView(LoginRequiredMixin, FormView): 

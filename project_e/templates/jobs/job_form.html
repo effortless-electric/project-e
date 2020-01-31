@@ -1,0 +1,42 @@
+{% extends "users/dealer_user.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block child_scss %} {% static 'css/users/createcust_form.css' %} {% endblock child_scss %}
+
+{% block page_header %}{{ user.username }}{% endblock %}
+
+{% block page_content %}
+  <link rel="stylesheet" href="{% static 'css/jobs/job_form.css' %}">
+
+  <div class="job-form">
+    {% comment %} <div class="job-form__header"> Job Details </div> {% endcomment %}
+
+    <div class="job-form__fields">
+      <div class="job-form__item">    
+        <div class="data-title">Sold by: </div> {{job.seller.get_full_name}}
+      </div>
+      <div class="job-form__item">
+        <div class="data-title">Sale date:</div> {{job.sale_date.month}}/{{job.sale_date.day}}/{{job.sale_date.year}}
+      </div>
+      <div class="job-form__item">
+        <div class="data-title">Customer name:</div> {{job.customer.full_name}}
+      </div>
+      <hr> 
+    </div>
+
+    <div class="job-form__container">
+      <form class="form-horizontal" method="post" action="{% url 'jobs:detail' pk=job.id%}">
+        {% if form.errors %}
+          form.errors
+        {% endif %}
+        {% csrf_token %}
+        {{ form|crispy }}
+        <div class="customer-creation__actions">
+          <div onclick="window.history.back()" class="button--gray">Cancel</div>     
+          <button type="submit" class="button--blue">Update</button>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock page_content %}

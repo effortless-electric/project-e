@@ -7,5 +7,5 @@ from project_e.jobs.views import (
 app_name = "jobs"
 urlpatterns = [
     path("create/", view=job_creation_view, name="create"),
-    path("<int:id>/", view=job_detail_view, name="detail")
+    path("<int:pk>/", view=job_detail_view, name="detail")
 ]

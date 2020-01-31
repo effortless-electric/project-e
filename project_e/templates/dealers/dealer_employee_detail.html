@@ -31,7 +31,7 @@
         <div class="dealer-employee-detail__jobs-container">
 
         {% for job in jobs%}
-            <div class="content-container">
+            <div class="content-container" onclick="window.location='{% url 'jobs:detail' pk=job.id%}'">
                 <div class="dealer-jobs__col--vehicle">
                     <div class="dealer-jobs__title">Vehicle</div>
                     {{job.car_make}} {{job.car_model}}
@@ -45,7 +45,7 @@
                     {{job.get_install}} 
                 </div>
                 <div class="content-container__view">
-                    <a href="{% url 'jobs:detail' id=job.id%}">View <img src="{% static 'images/favicons/right-caret.svg' %}" alt=""></a>
+                    <a href="{% url 'jobs:detail' pk=job.id%}">View <img src="{% static 'images/favicons/right-caret.svg' %}" alt=""></a>
                 </div>
             </div>
         {% endfor %}

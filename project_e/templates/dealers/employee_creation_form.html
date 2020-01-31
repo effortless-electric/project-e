@@ -15,7 +15,7 @@
       {% csrf_token %}
       {{ form|crispy }}
       <div class="customer-creation__actions">
-        <a href="{% url 'dealers:verify'%}">
+        <a href="{% url 'dealers:verify'%}" style="flex-grow: 1">
             <div class="button--gray">Cancel</div>     
         </a>
         <button type="submit" class="button--blue">Submit</button>
