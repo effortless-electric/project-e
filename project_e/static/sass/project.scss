@@ -254,7 +254,7 @@ hr {
   &--blue:hover {
     //transform: translateY(-1px); 
     box-shadow: 2px 2px 5px $ee-gray; 
-    animation: animate 2s ease-out 1;
+    animation: animate 2s ease-in-out 1;
     background: linear-gradient(to right, $ee-logo-blue 0%, $ee-logo-green 50%, $ee-logo-blue 100%);
     background-size: 600% 100%; 
   }
