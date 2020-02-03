@@ -17,6 +17,10 @@
             {{job.car_make}} {{job.car_model}}
           </div>
           <div class="dealer-jobs__col">
+            <div class="dealer-jobs__title">Customer</div>
+            {{job.customer.full_name}}
+          </div>
+          <div class="dealer-jobs__col">
             <div class="dealer-jobs__title">Status</div>
             {{job.get_status}}
           </div>

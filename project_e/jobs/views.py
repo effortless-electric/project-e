@@ -15,13 +15,40 @@ User = get_user_model()
 
 class JobDetailView(LoginRequiredMixin, UpdateView):
     model = Job
-    fields = ['vin', 'car_make', 'car_model', 'notes']
+    fields = ['vin', 'contract_price', 'car_year', 'car_make', 'car_model', 'notes']
 
     def form_valid(self, form): 
         messages.add_message(
             self.request, messages.INFO, "Job successfully updated"
         )
         return super().form_valid(form)
+
+    def get_context_data(self, *args, **kwargs): 
+        context = super().get_context_data()
+        job = context["job"]
+        context["header_table"] = [
+            {
+                "title": "Sold by: ",
+                "body": job.seller.get_full_name
+            },
+            {
+                "title": "Sale date:",
+                "body": str(job.sale_date.month) + '/' + str(job.sale_date.day) + '/' + str(job.sale_date.year)
+            },
+             {
+                "title": "Customer:",
+                "body": job.customer.full_name
+            },
+            {
+                "title": "Address:",
+                "body": job.customer_address
+            },
+            {
+                "title": "Address:",
+                "body": job.sale_date
+            }
+        ]
+        return context
 
 job_detail_view = JobDetailView.as_view()
 
@@ -42,16 +69,19 @@ class JobCreationView(LoginRequiredMixin, FormView):
         user_email = form.cleaned_data["email"]
         existing_user = User.objects.filter(email=user_email)
         if existing_user: 
-            user = existing_user
+            user = User.objects.get(email=user_email)
         else: 
             user = User.objects.create_user(user_email, full_name, "newpass123") # replace password with one time pass
 
         Job.objects.create(
             customer=user,
+            customer_address=form.cleaned_data['customer_address'],
+            contract_price=form.cleaned_data['contract_price'],
             seller=self.request.user,
             dealership=self.request.user.dealership,
             sale_date=datetime.datetime.now().date(),
             vin=form.cleaned_data['vin'],
+            car_year=form.cleaned_data['car_year'],
             car_make=form.cleaned_data['car_make'],
             car_model=form.cleaned_data['car_model'],
             notes=form.cleaned_data['notes']

@@ -13,15 +13,11 @@
     {% comment %} <div class="job-form__header"> Job Details </div> {% endcomment %}
 
     <div class="job-form__fields">
-      <div class="job-form__item">    
-        <div class="data-title">Sold by: </div> {{job.seller.get_full_name}}
-      </div>
-      <div class="job-form__item">
-        <div class="data-title">Sale date:</div> {{job.sale_date.month}}/{{job.sale_date.day}}/{{job.sale_date.year}}
-      </div>
-      <div class="job-form__item">
-        <div class="data-title">Customer name:</div> {{job.customer.full_name}}
-      </div>
+      {% for item in header_table %}
+        <div class="job-form__item">    
+          <div class="data-title">{{item.title}}</div> {{item.body}}
+        </div>
+      {% endfor %}
       <hr> 
     </div>
 
