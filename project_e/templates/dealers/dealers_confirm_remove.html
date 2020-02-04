@@ -28,7 +28,7 @@
         </table>
         <hr>      
     </div>
-    Are you sure you want to remove {{user.get_full_name}}
+    <div class="dealer-employee-detail__confirm-header">Are you sure you want to remove {{user.get_full_name}} </div>
     <div class="dealer-employee-detail__confirm">
         <div class="button--gray" onclick="window.location='{% url "dealers:employee-detail" pk=user.id %}'">Cancel</div>
         <div class="button--red" onclick="window.location='{% url 'users:remove' user_id=user.pk %}'">Remove</div>
