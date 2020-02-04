@@ -17,7 +17,7 @@ class JobDetailView(LoginRequiredMixin, UpdateView):
     model = Job
     fields = ['vin', 'contract_price', 'car_year', 'car_make', 'car_model', 'notes']
 
-    def form_valid(self, form): 
+    def form_valid(self, form):
         messages.add_message(
             self.request, messages.INFO, "Job successfully updated"
         )
@@ -44,8 +44,8 @@ class JobDetailView(LoginRequiredMixin, UpdateView):
                 "body": job.customer_address
             },
             {
-                "title": "Address:",
-                "body": job.sale_date
+                "title": "Dealership",
+                "body": job.dealership.name
             }
         ]
         return context

@@ -59,7 +59,7 @@ class UserDetailView(LoginRequiredMixin, DetailView):
 
     def get(self, *args, **kwargs):
         template_name = "users/user_detail.html"
-        if self.request.user.dealership: 
+        if self.request.user.dealership or self.request.user.is_staff: 
             return dealer_analytics_view(self.request)
         return render(self.request, template_name, kwargs)
             

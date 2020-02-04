@@ -7,8 +7,8 @@ from project_e.dealers.views import (
     dealer_user_verify_view, 
     dealer_jobs_view, 
     dealer_employee_detail, 
-    dealer_create_employee
-
+    dealer_create_employee,
+    staff_dealer_creation_view
 )
 
 app_name = "dealers"
@@ -18,7 +18,7 @@ urlpatterns = [
     path("verify/", view=dealer_user_verify_view, name="verify"),
     path("analytics/", view=dealer_analytics_view, name="analytics"),
     path("jobs/", view=dealer_jobs_view, name="job"), 
-    path("sales/<int:pk>", view=dealer_employee_detail, name="employee-detail"), 
-    path("new-associate/", view=dealer_create_employee, name="employee-create")
-
+    path("sales/<int:pk>", view=dealer_employee_detail, name="employee-detail"),
+    path("new-associate/", view=dealer_create_employee, name="employee-create"),
+    path("dealer-creation-portal/", view=staff_dealer_creation_view, name="creation-portal")
 ]

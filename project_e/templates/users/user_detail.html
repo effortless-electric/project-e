@@ -19,6 +19,11 @@
 <!-- End Action buttons -->
 {% endif %}
 
+{% if request.user.is_staff %}
+  <a href="{% url "dealers:creation-portal" %}">Add new dealer</a>
+
+  <a href="{% url "dealers:analytics"%}">analytics</a>
+{% endif %}
 </div>
 {% endblock content %}
 
