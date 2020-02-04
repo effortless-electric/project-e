@@ -20,36 +20,45 @@
                 <td>{{user.email}}</td>
                 <td class="dealer-employee-detail__title">Status:</td> 
                 <td> 
-                    {% if not user.verified %} <a href="{% url 'users:verify' user_id=user.id %}"> Verify </a> {% endif %}
-                    <a href="{% url 'users:remove' user_id=user.pk %}">Remove</a>
+                    {% if not user.verified %} 
+                        <a href="{% url 'users:verify' user_id=user.id %}"> Verify </a> 
+                    {% else %}
+                        Verified
+                    {% endif %}
+                    <a href="{% url 'users:confirm-remove' pk=user.pk %}" class="dealer-employee-detail__link--remove">Remove</a>
                 </td>
             </tr>
         </table>
         <hr>
 
-        <div class="dealer-employee-detail__jobs"> Jobs by user </div>
-        <div class="dealer-employee-detail__jobs-container">
+        {% if jobs %}
+            <div class="dealer-employee-detail__jobs"> Jobs by user </div>
+            <div class="dealer-employee-detail__jobs-container">
 
-        {% for job in jobs%}
-            <div class="content-container" onclick="window.location='{% url 'jobs:detail' pk=job.id%}'">
-                <div class="dealer-jobs__col--vehicle">
-                    <div class="dealer-jobs__title">Vehicle</div>
-                    {{job.car_make}} {{job.car_model}}
+            {% for job in jobs%}
+                <div class="content-container" onclick="window.location='{% url 'jobs:detail' pk=job.id%}'">
+                    <div class="dealer-jobs__col--vehicle">
+                        <div class="dealer-jobs__title">Vehicle</div>
+                        {{job.car_make}} {{job.car_model}}
+                    </div>
+                    <div class="dealer-jobs__col">
+                        <div class="dealer-jobs__title">Status</div>
+                        {{job.get_status}}
+                    </div>
+                    <div class="dealer-jobs__col">
+                        <div class="dealer-jobs__title">Deadline</div>
+                        {{job.get_install}} 
+                    </div>
+                    <div class="content-container__view">
+                        <a href="{% url 'jobs:detail' pk=job.id%}">View <img src="{% static 'images/favicons/right-caret.svg' %}" alt=""></a>
+                    </div>
                 </div>
-                <div class="dealer-jobs__col">
-                    <div class="dealer-jobs__title">Status</div>
-                    {{job.get_status}}
-                </div>
-                <div class="dealer-jobs__col">
-                    <div class="dealer-jobs__title">Deadline</div>
-                    {{job.get_install}} 
-                </div>
-                <div class="content-container__view">
-                    <a href="{% url 'jobs:detail' pk=job.id%}">View <img src="{% static 'images/favicons/right-caret.svg' %}" alt=""></a>
-                </div>
+            {% endfor %}
             </div>
-        {% endfor %}
-        </div>
+        {% else%}
+            <div class="dealer-employee-detail__jobs"> No contracts by this associate </div>
+        {% endif %}
+        
     </div>
 {% endblock page_content %}
 

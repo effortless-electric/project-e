@@ -251,6 +251,16 @@ hr {
     background-color: $ee-blue;
   }
 
+  &--red {
+    @extend .button; 
+    background-color: $red; 
+  }
+
+  &--red:hover {
+    @extend .button; 
+    background-color: $dark-red; 
+  }
+
   &--blue:hover {
     //transform: translateY(-1px); 
     box-shadow: 2px 2px 5px $ee-gray; 
@@ -280,6 +290,7 @@ hr {
   line-height: 19px;
   height: $button-height; 
   max-width: 200px; 
+  width: 100%; 
   flex-grow: 1; 
   background: black; 
   color: white; 

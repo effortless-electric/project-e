@@ -1,0 +1,37 @@
+{% extends "users/dealer_user.html" %}
+{% load static %}
+
+{% block title %}Effortless Electric{% endblock %}
+
+{% block child_scss %} {% static "css/dealers/dealer_employee_detail.css" %}{% endblock child_scss %}
+
+{% block page_content %}
+    <link href="{% static 'css/dealers/dealer_jobs.css' %}" rel="stylesheet">
+    <div class="dealer-employee-detail">
+        <table class="dealer-employee-detail__header">
+            <tr class="">
+                <td class="dealer-employee-detail__title">Name: </td>
+                <td>{{user.get_full_name}}</td>
+                <td class="dealer-employee-detail__title">Location:</td>
+                <td> {{user.dealership.address}}</td>
+            </tr> 
+            <tr>
+                <td class="dealer-employee-detail__title">Email: </td> 
+                <td>{{user.email}}</td>
+                <td class="dealer-employee-detail__title">Status:</td> 
+                <td> 
+                    {% if not user.verified %} 
+                        <a href="{% url 'users:verify' user_id=user.id %}"> Verify </a> 
+                    {% endif %}
+                </td>
+            </tr>
+        </table>
+        <hr>      
+    </div>
+    Are you sure you want to remove {{user.get_full_name}}
+    <div class="dealer-employee-detail__confirm">
+        <div class="button--gray" onclick="window.location='{% url "dealers:employee-detail" pk=user.id %}'">Cancel</div>
+        <div class="button--red" onclick="window.location='{% url 'users:remove' user_id=user.pk %}'">Remove</div>
+    </div>
+{% endblock page_content %}
+

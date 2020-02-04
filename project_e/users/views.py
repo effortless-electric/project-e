@@ -55,7 +55,7 @@ class UserDetailView(LoginRequiredMixin, DetailView):
 
     model = User
     slug_field = "id"
-    slug_url_kwarg = "id" 
+    slug_url_kwarg = "id"
 
     def get(self, *args, **kwargs):
         template_name = "users/user_detail.html"
@@ -145,5 +145,10 @@ class UserRemoveView(LoginRequiredMixin, RedirectView):
         user.sales = False
         user.save(update_fields=["dealership", "verified", "sales"])
         return reverse("dealers:verify")
-
 user_remove_view = UserRemoveView.as_view()
+
+class UserConfirmRemoveView(LoginRequiredMixin, DetailView):
+    model = User
+    template_name = "dealers/dealers_confirm_remove.html"
+
+user_confirm_remove_view = UserConfirmRemoveView.as_view()
