@@ -33,8 +33,7 @@
         display: flex;
         justify-content: flex-start;
         width: 100%; 
-        margin-top: 20px; 
-        margin-bottom: 20px; 
+        margin: 20px auto; 
 
         &-container {
             display: flex;
@@ -62,5 +61,33 @@
 
     td {
         width: 20%; 
+    }
+
+    &__link {
+        font-size: 36px;
+
+        &--remove {
+            color: red; 
+        }
+    }
+
+    &__link:hover {
+        filter: brightness(85%)
+    }
+
+    &__confirm {
+        width: 50%; 
+        margin: auto; 
+        display: flex;
+        flex-flow: row wrap; 
+        justify-content: space-between;
+        align-items: center;
+
+        &-header {
+            width: 100%; 
+            text-align: center;
+            font-size: 24px;
+            margin: 40px;  
+        };
     }
 }
