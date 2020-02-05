@@ -1,15 +1,18 @@
 import datetime
 
-from django.views.generic import UpdateView, FormView
+from django.views.generic import UpdateView, FormView, DetailView
 from django.urls import reverse
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.contrib.auth import authenticate
 
+from easy_pdf.views import PDFTemplateResponseMixin
+
 from project_e.customers.models import Customer
 from project_e.jobs.forms import ContractForm
 from project_e.jobs.models import Job
+
 
 User = get_user_model()
 
@@ -92,4 +95,9 @@ class JobCreationView(LoginRequiredMixin, FormView):
         )
         return super().form_valid(form)
 
+class PDFContractDetailView(PDFTemplateResponseMixin, DetailView):
+    model = Job
+    template_name = 'pdf/contract.html'
+
 job_creation_view = JobCreationView.as_view()
+pdf_contract_detail_view = PDFContractDetailView.as_view()

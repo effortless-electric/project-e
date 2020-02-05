@@ -1,0 +1,31 @@
+{% extends "easy_pdf/base.html" %}
+
+{% block extra_style %}
+    <style type="text/css">
+        body {
+            font-family: "Helvetica", "sans-serif";
+            color: #333333;
+        }
+
+        .contract {
+            display: flex; 
+            flex-flow: column no-wrap; 
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+
+    <div class="contract"> 
+    <div>Customer name: {{ job.customer.get_full_name }}</div>
+    <div>Customer email: {{ job.customer.email }}</div>
+    <div>Customer address: {{ job.customer_address }}</div>
+    <div>Dealership name: {{ job.dealership.name }} </div>
+    <div>Dealership address: {{ job.dealership.address }}</div>
+    <div>Associate: {{ job.seller.get_full_name }}</div>   
+    <div>Sold on: {{ job.sale_date }}</div>
+    <div>Car VIN: {{ job.vin }}</div>
+    <div>Car: {{ job.car_year }} {{job.car_make}} {{job.car_model}}</div>
+    <div>Price: {{ job.contract_price }}</div>
+    </div>
+{% endblock %}

@@ -21,6 +21,8 @@
       <hr> 
     </div>
 
+    <a href="{% url "jobs:pdf" pk=job.pk%}" target="_blank"> print </a>
+
     <div class="job-form__container">
       <form class="form-horizontal" method="post" action="{% url 'jobs:detail' pk=job.id%}">
         {% if form.errors %}
