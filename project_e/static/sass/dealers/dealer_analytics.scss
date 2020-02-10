@@ -12,6 +12,8 @@
         display: flex;
         justify-content: center;
         border: 1px solid $ee-light-gray;
+        margin-left: 20px;
+        margin-right: 20px;
         text-align: center;
 
         &__statistics{
@@ -21,7 +23,8 @@
             align-items: center;
             width: 108px;
             height: 179px;
-            margin-top: 10px;
+            margin-top: 10;
+
             font-size: 82px;
         }
         &__statistics-text{
@@ -52,7 +55,6 @@
         justify-content: center;
         align-items: center;
         margin: auto 20px;
-        height: 413px;
         border: 1px solid $ee-light-gray;
         font-size: 60px;
         
@@ -61,6 +63,6 @@
             
         }
     }
+    }
     
-
-}
+    

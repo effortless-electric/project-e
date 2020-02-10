@@ -11,11 +11,27 @@
     {{jobs.size}}
 
     {% for job in jobs %}
-      {{job.customer.id}}
-      {{job.seller.username}}
-      {{job.dealership.name}}
-      {{job.vin}}
-      {{job.notes}}
+      <div class="content-container" onclick="window.location='{% url 'jobs:detail' pk=job.id%}'">
+          <div class="dealer-jobs__col--vehicle">
+            <div class="dealer-jobs__title">Vehicle</div>
+            {{job.car_make}} {{job.car_model}}
+          </div>
+          <div class="dealer-jobs__col">
+            <div class="dealer-jobs__title">Customer</div>
+            {{job.customer.full_name}}
+          </div>
+          <div class="dealer-jobs__col">
+            <div class="dealer-jobs__title">Status</div>
+            {{job.get_status}}
+          </div>
+          <div class="dealer-jobs__col">
+            <div class="dealer-jobs__title">Deadline</div>
+            {{job.get_install}} 
+          </div>
+          <div class="content-container__view">
+            <a href="{% url 'jobs:detail' pk=job.id%}">View <img src="{% static 'images/favicons/right-caret.svg' %}" alt=""></a>
+          </div>
+      </div>
     {% endfor %}
   </div>
 {% endblock page_content %}

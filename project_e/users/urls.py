@@ -8,7 +8,8 @@ from project_e.users.views import (
     user_detail_view,
     user_add_dealer_view,
     user_verify_view,
-    user_remove_view
+    user_remove_view,
+    user_confirm_remove_view, 
 )
 
 app_name = "users"
@@ -18,6 +19,7 @@ urlpatterns = [
     path("update/", view=user_update_view, name="update"),
     path("verify/<int:user_id>", view=user_verify_view, name="verify"),
     path("remove/<int:user_id>", view=user_remove_view, name="remove"),
+    path("confirm/<int:pk>", view=user_confirm_remove_view, name="confirm-remove"),
     path("<int:id>/", view=user_detail_view, name="detail"),
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(next_page='/accounts/login'), name='logout'),

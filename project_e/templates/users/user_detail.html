@@ -4,7 +4,7 @@
 {% block title %}User: {{ object.username }}{% endblock %}
 
 {% block content %}
-  <div class="container">
+  <div class="user-detail">
         <h2>{{ object.username }}</h2>
         {% if object.name %}
           <p>{{ object.name }}</p>
@@ -19,6 +19,11 @@
 <!-- End Action buttons -->
 {% endif %}
 
+{% if request.user.is_staff %}
+  <a href="{% url "dealers:creation-portal" %}">Add new dealer</a>
+
+  <a href="{% url "dealers:analytics"%}">analytics</a>
+{% endif %}
 </div>
 {% endblock content %}
 
