@@ -1,0 +1,17 @@
+{% extends "users/dealer_user.html" %}
+{% load static %}
+
+{% block title %}User: {{ object.username }}{% endblock %}
+
+{% block content %}
+
+<div class='row'>
+    <div class='col-sm-12'>
+        <h1>Hello World</h1>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="{% static "project_e\static\js\line-chart.js" %}"></script>
+        
+    </div>
+</div>
+
+{% endblock content %}
