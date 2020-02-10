@@ -12,8 +12,6 @@
         display: flex;
         justify-content: center;
         border: 1px solid $ee-light-gray;
-        margin-left: 20px;
-        margin-right: 20px;
         text-align: center;
 
         &__statistics{
@@ -23,7 +21,7 @@
             align-items: center;
             width: 108px;
             height: 179px;
-            margin-top: 10;
+            margin-top: 10px;
             font-size: 82px;
         }
         &__statistics-text{
@@ -57,10 +55,11 @@
         height: 413px;
         border: 1px solid $ee-light-gray;
         font-size: 60px;
-    }
-    &__graphics:hover{
-        box-shadow: 1px 1px 10px $ee-light-gray;
-        cursor: pointer;
+        
+        &__chart{
+            width: 90%;
+            
+        }
     }
     
 
