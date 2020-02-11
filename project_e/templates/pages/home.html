@@ -4,98 +4,61 @@
 {% block scss %} {% static 'css/pages/home.css' %} {% endblock scss%}
 
 {% block banner %}
-<div class="banner" 
-     alt="logo" 
-     style="background: url( {% static 'images/icons/image.svg' %}) no-repeat center center fixed;
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-position: 50% 50%;">
-    <div class="home-page__header">Rethink Charging.</div>
-    <div class="home-page__arrows-container"> 
-        <div class="home-page__arrows"> </div>
-        <div class="home-page__arrows"> </div>
-        <div class="home-page__arrows"> </div>
-    </div> 
-
-</div> 
-
-<div class="home-page-works"> 
-    <div class="home-page-works__header">How It Works</div>
-    <div class="home-page-works__container">
-        <div class="home-page-works__item">
-            <div class="home-page-works__icon">1</div>
-            <div class="home-page-works__title">Customer Purchases Car</div>
-            <div class="home-page-works__body">Maecenas ligula nisi, sodales sed nibh id, hendrerit commodo magna. Duis a lorem ut tellus dictum.</div> 
+    <div class="home">
+        <div class="home-banner">
+            <div class="home-banner__message">
+                <div class="home-title">High speed home charging for electric and hybrid vehicles</div>
+                <div class="home-body">Charge 10x faster than a standard wall outlet with an installed 240 volt Level 2 system.</div>
+                <div class="home-banner__message-button button--blue">Get started now</div>
+            </div>
+            <div class="home-banner__graphic">
+                <img class="home-banner__graphic-image" src="{% static 'images/pictures/home-graphic.png'%}" alt="effortless-graphic">
+            </div>
         </div>
 
-        <div class="home-page-works__item">
-            <div class="home-page-works__icon">2</div>
-            <div class="home-page-works__title">We Send Our Electrician</div>
-            <div class="home-page-works__body">Maecenas ligula nisi, sodales sed nibh id, hendrerit commodo magna. Duis a lorem ut tellus dictum.</div> 
+        <div class="home-charge">
+            <div class="home-title">
+                Leading the charge    
+            </div>
+
+            <div class="home-body home-charge-body"> Electric vehicle owners, car dealerships, and global energy companies partner with Eﬀortless Electric to bring ease to at-home charging. </div>
+            <img class="home-charge__img" src="{% static 'images/pictures/home-graphic-2.png'%}" alt="secondary circle graphic">
         </div>
 
-        <div class="home-page-works__item">
-            <div class="home-page-works__icon">3</div>
-            <div class="home-page-works__title">Eletric Charger Installed</div>
-            <div class="home-page-works__body">Maecenas ligula nisi, sodales sed nibh id, hendrerit commodo magna. Duis a lorem ut tellus dictum.</div> 
+        <div class="home-simplicity">
+            <div class="home-title">Simplicity comes standard.</div>
+
+            <div class="home-body">
+                We evaluate your project, manage any necessary  permitting, and schedule the installation so the only thing you need to do is look forward to convenient and reliable charging. 
+            </div>
         </div>
-    </div>
-</div> 
 
-<div class="home-page-features">
-    <div class="home-page-features__header">Platform Feautures</div>
-    <div class="home-page-features__row">
-        <div class="home-page-features__blurb">
-            <div class="home-page-features__icon"></div>
-            <div class="home-page-features__text">Praesent sit amet ultriceS
-
-                    Aliquam non sodales nisl. Suspendisse varius mattis turpis, blandit tincidunt leo rhoncus nec.</div>
-        </div>
-        <div class="home-page-features__blurb">
-            <div class="home-page-features__icon"></div>
-            <div class="home-page-features__text">Praesent sit amet ultriceS
-
-                    Aliquam non sodales nisl. Suspendisse varius mattis turpis, blandit tincidunt leo rhoncus nec.</div>
+        <div class="home-circles">
+            <div class="home-circles__container">
+                <div class="home-circles__title">Resources</div>
+                <div class="home-circles__icon">
+                    <div class="home-circles__dot"></div>
+                </div>
+            </div>
+            <div class="home-circles__container">
+                <div class="home-circles__title">Plan your project</div>
+                <div class="home-circles__icon">
+                    <div class="home-circles__dot"></div>
+                </div>
+            </div> <div class="home-circles__container">
+                <div class="home-circles__title">Schedule an install</div>
+                <div class="home-circles__icon">
+                    <div class="home-circles__dot"></div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="home-page-features__row">
-        <div class="home-page-features__blurb">
-            <div class="home-page-features__icon"></div>
-            <div class="home-page-features__text">Praesent sit amet ultriceS
-
-                    Aliquam non sodales nisl. Suspendisse varius mattis turpis, blandit tincidunt leo rhoncus nec.</div>
+    <div class="home-go">
+        <div class="home-go__title">Green means go</div>
+        <div class="home-go__body">
+            Make sure your vehicle is fully charged and ready to go. One less thing to worry about so you, too, can wake up at 100% 
         </div>
-        <div class="home-page-features__blurb">
-            <div class="home-page-features__icon"></div>
-            <div class="home-page-features__text">Praesent sit amet ultriceS
-
-                    Aliquam non sodales nisl. Suspendisse varius mattis turpis, blandit tincidunt leo rhoncus nec.</div>
-        </div>
+        <div class="button--blue">Get started now</div>
     </div>
-
-    <div class="home-page-features__row">
-        <div class="home-page-features__blurb">
-            <div class="home-page-features__icon"></div>
-            <div class="home-page-features__text">Praesent sit amet ultriceS
-
-                    Aliquam non sodales nisl. Suspendisse varius mattis turpis, blandit tincidunt leo rhoncus nec.</div>
-        </div>
-        <div class="home-page-features__blurb">
-            <div class="home-page-features__icon"></div>
-            <div class="home-page-features__text">Praesent sit amet ultriceS
-
-                    Aliquam non sodales nisl. Suspendisse varius mattis turpis, blandit tincidunt leo rhoncus nec.</div>
-        </div>
-    </div>
-</div>
-
-<div class="home-page-footer"> 
-    <div class="home-page-footer__message">
-            Maecenas ligula nisi, sodales sed nibh id, hendrerit commodo magna. Duis a lorem ut tellus dictum.
-    </div>
-
-    <div class="button">Contact Us</div>
-</div>
 {% endblock banner %}
