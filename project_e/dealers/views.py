@@ -53,7 +53,7 @@ class DealerAnalyticsView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(DealerAnalyticsView, self).get_context_data(*args, **kwargs)
-        context['analytics_list'] = Job.objects.filter(dealership=self.request.user.dealership)
+        context['analytics_list'] = Job.objects.filter(dealership=self.request.user.dealership).order_by('sale_date', 'customer.full_name')
         return context
     
 class DealerDetailView(LoginRequiredMixin, DetailView):
