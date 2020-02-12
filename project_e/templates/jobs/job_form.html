@@ -18,10 +18,14 @@
           <div class="data-title">{{item.title}}</div> {{item.body}}
         </div>
       {% endfor %}
+      <a href="{% url "jobs:pdf" pk=job.pk%}" target="_blank"> 
+        <div class="job-form__item">
+          <div class="data-title">Download: </div> Print
+        </div> 
+      </a>
       <hr> 
     </div>
 
-    <a href="{% url "jobs:pdf" pk=job.pk%}" target="_blank"> print </a>
 
     <div class="job-form__container">
       <form class="form-horizontal" method="post" action="{% url 'jobs:detail' pk=job.id%}">

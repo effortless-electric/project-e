@@ -5,27 +5,145 @@
         body {
             font-family: "Helvetica", "sans-serif";
             color: #333333;
+            font-size: 12px; 
         }
-
         .contract {
             display: flex; 
             flex-flow: column no-wrap; 
+        }
+        .header-bar {
+            display: grid; 
+            grid-template-columns: 33fr 33fr 33fr; 
+            grid-template-rows: 100fr; 
+        }
+        .table {
+            border: 1px solid black; 
+            margin-bottom: 20px; 
+        }
+        .title {
+            font-size: 20px;
+            float: left; 
+            grid-column-start: 1;
+            grid-column-end: 2; 
+            grid-row-start: 1; 
+            grid-row-end: 1; 
+        }
+        .date {
+            grid-column-start: 2; 
+            grid-column-end: 3;
+            grid-row-start: 1; 
+            grid-row-end: 1;
+        }
+        .note {
+            font-weight: 600px; 
+            font-size: 14px; 
+            margin-bottom: 10px; 
+        }
+        p {
+            font-size: 12px; 
+        }
+        .bullet {
+            margin: 10px auto 20px auto; 
+        }
+        td {
+            padding-top: 5px; 
+            padding-left: 5px; 
+        }
+        ul {
+            margin: 20px; 
+        }
+        li {
+            margin: 3px auto; 
         }
     </style>
 {% endblock %}
 
 {% block content %}
+    <div class="header-bar">
+        <span class="title">Effortless Electric</span>
+        <img href="main-logo.png" alt="img"/>
+        <span class="date"> Date: {{ job.sale_date.date }}</span>
+    </div>
+
+    <table class="table">
+        <tr>
+            <td><div>Purchaser:</div> <div>{{job.customer.get_full_name}}</div></td>
+            <td><div>Email:</div> <div>{{job.customer.email}}</div></td>
+            <td><div>Contract Number:</div> <div>{{job.id}}</div></td>
+            <td><div>Dealer Code:</div> <div>{{job.dealership.ref_id}}</div></td>
+        </tr>
+        <tr>
+            <td><div>Customer Address:</div> <div>{{job.customer.address}}</div></td>
+            <td>City</td>
+            <td>State</td>
+            <td>Zip</td>
+        </tr>
+        <tr>
+            <td><div>Vehicle Year:</div> <div>{{job.car_year}}</div></td>
+            <td><div>Make:</div> <div>{{job.car_make}}</div></td>
+            <td><div>Model:</div> <div>{{job.car_model}}</div></td>
+            <td><div>VIN:</div> <div>{{job.vin}}</div> </td>
+        </tr>
+        <tr>
+            <td><div>Dealer Name:</div> <div>{{job.dealership.name}}</div></td>
+            <td><div>Dealer Phone:</div> <div>{{job.dealership.phone}}</div></td>
+            <td><div>Contract Price:</div> <div>{{job.contract_price}}</div></td>
+        </tr>
+        <tr>
+            <td><div>Dealer Address:</div> <div>{{job.dealership.address}}</div></td>
+            <td>City:</td>        
+            <td>State</td>
+            <td>Zip</td>
+        </tr>
+    </table>
 
     <div class="contract"> 
-    <div>Customer name: {{ job.customer.get_full_name }}</div>
-    <div>Customer email: {{ job.customer.email }}</div>
-    <div>Customer address: {{ job.customer_address }}</div>
-    <div>Dealership name: {{ job.dealership.name }} </div>
-    <div>Dealership address: {{ job.dealership.address }}</div>
-    <div>Associate: {{ job.seller.get_full_name }}</div>   
-    <div>Sold on: {{ job.sale_date }}</div>
-    <div>Car VIN: {{ job.vin }}</div>
-    <div>Car: {{ job.car_year }} {{job.car_make}} {{job.car_model}}</div>
-    <div>Price: {{ job.contract_price }}</div>
+    <div class="note">
+        The Purchase of this contract is NOT required to either purchase or obtain financing for the VEHICLE.
+    </div>
+    <div class="note">
+        *** Included Parameters of Installation***
+    </div>
+    <p>
+        <ul>
+            <li>Level 2 40 amp smart charger. </li>
+            <li>Running up to 30 feet of wiring from service panel to garage charger outlet. (Drywall work is extra)</li>
+            <li>Indoor, covered from elements installation location of charger unit.</li>
+            <li>Installation of 50amp circuit breaker</li>
+            <li>Local Permitting and Inspection</li>
+        </ul>
+    <div class="note">
+        What is NOT included (Line item additional estimate sheet)
+    </div>
+    <p>
+        <ul>
+            <li>Paint / Drywall (if “Upgrade” Box is checked, first $500 in paint / drywall is covered)</li>
+            <li>Moving large objects out of way of installation</li>
+        </ul>
+    </p>
+    <div class="note">
+        1. DEFINITIONS
+    </div>
+    <p>
+        For purposes of this Agreement, the following terms shall have the following meanings:
+        <div class="bullet">a. “Services” means any and all services specified in the Statement of Work (as defined below).</div class="bullet">
+        <div class="bullet">b. “Deliverables” means any tangible property, including software media, delivered to Customer under this Service Contract, as specified in the Statement of Work.</div>
+        <div class="bullet">c. “Project” means the combination of Services and Deliverables to be provided under this Agreement.</div>
+    </p>
+    <div class="note">
+        2. STATEMENT OF WORK
+    </div>
+    <p>
+        Contractor shall perform and deliver the Project as set forth in the Statement of Work issued against and subject to the terms and conditions of this Agreement.
+    </p>
+    <p>
+        The work which Contractor shall perform shall be specified in the Statement of Work–attached 
+        hereto as Attachment A–which will be written under the terms and conditions of this Agreement. 
+         The Statement of Work shall specify:  (i) description of Services and Deliverables, (ii) schedule 
+         for Deliverables, and (iii) price and payment schedule.
+    </p>
+
+    <div class="note">
+        <div>Customer Name: {{ job.customer.get_full_name }}</div>
     </div>
 {% endblock %}
