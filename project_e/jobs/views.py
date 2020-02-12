@@ -94,10 +94,21 @@ class JobCreationView(LoginRequiredMixin, FormView):
             self.request, messages.INFO, "Customer Info successfully updated and job started"
         )
         return super().form_valid(form)
+      
+job_creation_view = JobCreationView.as_view()
 
 class PDFContractDetailView(PDFTemplateResponseMixin, DetailView):
     model = Job
     template_name = 'pdf/contract.html'
 
-job_creation_view = JobCreationView.as_view()
 pdf_contract_detail_view = PDFContractDetailView.as_view()
+
+class JobCustomerContacted(RedirectView): 
+    def get_redirect_url(self, *args, **kwargs):
+        job = Job.objects.get(id=kwargs['pk'])
+        if job:
+            job.customer_contacted = True
+            job.save()
+        return  reverse("dealers:job")
+
+job_customer_contacted = JobCustomerContacted.as_view()

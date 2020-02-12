@@ -20,14 +20,12 @@
             <div class="dealer-jobs__title">Customer</div>
             {{job.customer.full_name}}
           </div>
+          {% if request.user.staff %}
           <div class="dealer-jobs__col">
-            <div class="dealer-jobs__title">Status</div>
-            {{job.get_status}}
+            <div class="dealer-jobs__title">Customer Contacted</div>
+            {{job.customer_contacted}} 
           </div>
-          <div class="dealer-jobs__col">
-            <div class="dealer-jobs__title">Deadline</div>
-            {{job.get_install}} 
-          </div>
+          {% endif %}
           <div class="content-container__view">
             <a href="{% url 'jobs:detail' pk=job.id%}">View <img src="{% static 'images/favicons/right-caret.svg' %}" alt=""></a>
           </div>
