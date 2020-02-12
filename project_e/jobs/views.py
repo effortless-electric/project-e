@@ -1,6 +1,6 @@
 import datetime
 
-from django.views.generic import UpdateView, FormView
+from django.views.generic import UpdateView, FormView, RedirectView
 from django.urls import reverse
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -93,3 +93,13 @@ class JobCreationView(LoginRequiredMixin, FormView):
         return super().form_valid(form)
 
 job_creation_view = JobCreationView.as_view()
+
+class JobCustomerContacted(RedirectView): 
+    def get_redirect_url(self, *args, **kwargs):
+        job = Job.objects.get(id=kwargs['pk'])
+        if job:
+            job.customer_contacted = True
+            job.save()
+        return  reverse("dealers:job")
+
+job_customer_contacted = JobCustomerContacted.as_view()
