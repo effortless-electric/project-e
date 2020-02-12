@@ -14,29 +14,12 @@
     <![endif]-->
 
     <link rel="icon" href="{% static 'images/logos/BlueCrest.png' %}">
-    <style>
-      @font-face{ 
-        font-family: 'Raleway';
-        src: local('Raleway'),
-             url("{% static 'fonts/Raleway-Regular.ttf' %}") format('truetype');
-      }
-      @font-face{ 
-        font-family: 'Raleway-Light';
-        src: local('Raleway-Light'),
-             url("{% static 'fonts/Raleway-Light.ttf' %}") format('truetype');
-      }
-      @font-face{ 
-        font-family: 'Raleway-Bold';
-        src: local('Raleway-Bold'),
-             url("{% static 'fonts/Raleway-Bold.ttf' %}") format('truetype');
-      }
-    </style>
-
     {% block css %}
     
     <!-- Latest compiled and minified Bootstrap CSS -->    
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,700&display=swap" rel="stylesheet">
     <!-- Your stuff: Third-party CSS libraries go here -->
     <link rel="stylesheet" type='text/css' href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous" />

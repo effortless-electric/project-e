@@ -17,7 +17,8 @@
   }
 
   &-body {
-    font-family: "Raleway-Light";
+    font-family: "Raleway";
+    font-weight: 300; 
     font-size: 24px; 
     font-weight: 100; 
     margin: 20px 20px 20px 0; 
@@ -167,8 +168,8 @@
 
     &__title {
       font-size: 55px; 
-      font-family: "Raleway-Bold", "Raleway", Helvetica;
-      font-weight: 600; 
+      font-family: "Raleway", Helvetica;
+      font-weight: 700; 
       margin: auto; 
       color: white; 
     }
@@ -176,7 +177,8 @@
     &__body {
       font-size: 24px; 
       font-weight: 100; 
-      font-family: "Raleway-Light", "Helvetic"; 
+      font-family: "Raleway", "Helvetic"; 
+      font-weight: 300; 
       color: white; 
       text-align: center;
       max-width: 800px; 
