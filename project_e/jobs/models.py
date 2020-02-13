@@ -31,6 +31,7 @@ class Job(models.Model):
     notes = models.TextField(blank=True, null=True)
     contract_price = models.IntegerField(max_length=6, blank=False, default=2500)
     customer_address = models.CharField(max_length=200, blank=True)
+    customer_contacted = models.BooleanField(default=False)
 
 
     def get_absolute_url(self):

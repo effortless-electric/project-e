@@ -21,3 +21,5 @@ django-phonenumber-field # https://github.com/stefanfoulis/django-phonenumber-fi
 phonenumbers
 django-braces
 django_ajax
+django-easy-pdf
+xhtml2pdf>=0.2b1

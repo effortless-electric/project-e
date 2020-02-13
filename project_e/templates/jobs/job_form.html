@@ -18,8 +18,19 @@
           <div class="data-title">{{item.title}}</div> {{item.body}}
         </div>
       {% endfor %}
+      <a href="{% url "jobs:pdf" pk=job.pk%}" target="_blank"> 
+        <div class="job-form__item">
+          <div class="data-title">Download: </div> Print
+        </div> 
+      </a>
+      {% if request.user.staff and not job.customer_contacted%}
+        <div class="job-form__item">    
+          <div class="data-title">Customer Contacted</div> <a href="{% url 'jobs:contacted' pk=job.id %}">Done</a>
+        </div>
+      {% endif %}
       <hr> 
     </div>
+
 
     <div class="job-form__container">
       <form class="form-horizontal" method="post" action="{% url 'jobs:detail' pk=job.id%}">

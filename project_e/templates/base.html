@@ -13,8 +13,7 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
 
-    <link rel="icon" href="{% static 'images/logos/logo-crest.png' %}">
-
+    <link rel="icon" href="{% static 'images/logos/BlueCrest.png' %}">
     {% block css %}
     
     <!-- Latest compiled and minified Bootstrap CSS -->    
@@ -23,8 +22,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,700&display=swap" rel="stylesheet">
     <!-- Your stuff: Third-party CSS libraries go here -->
     <link rel="stylesheet" type='text/css' href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous" />
@@ -44,15 +42,17 @@
     <div class="mb-1">
       <nav class="base-nav">
         <a class="navbar-brand nav-logo-container" href="{% url 'home' %}">
-          <img class="nav-logo" src="{% static 'images/logos/main-logo-no-margin.svg' %}" alt="logo">
+          <img class="nav-logo" src="{% static 'images/logos/horizantal-blue-logo.png' %}" alt="logo" style="height:100px">
         </a>
-        <div class="base-nav__container">
+        <div class="base-nav__container">          
           {% if request.user.is_authenticated %}
-            <a class="base-nav__item" href="{% url 'users:detail' request.user.id  %}">{% trans "My Profile" %}</a>
-            <a class="base-nav__item" href="{% url 'account_logout' %}">{% trans "Sign Out" %}</a>
+            <a class="base-nav__item nav__item" href="{% url 'users:detail' request.user.id  %}">Analytics</a>
+            <a  class="button--blue nav__button base-nav__item" href="{% url 'account_logout' %}">{% trans "Sign Out" %}</a>
           {% else %}
-            <a id="sign-up-link" class="base-nav__item" href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a>
-            <a id="log-in-link" class="base-nav__item" href="{% url 'account_login' %}">{% trans "Sign In" %}</a>
+            <a class="base-nav__item nav__item" href="">Services</a>
+            <a class="base-nav__item nav__item" href="">Resources</a>
+            <a class="base-nav__item nav__item" href="">About Us</a>
+            <a id="log-in-link" class="button--blue nav__button base-nav__item" href="{% url 'account_login' %}">{% trans "Log In" %}</a>
           {% endif %}
         </div>
       </nav>
@@ -74,6 +74,39 @@
       {% block content %}
       {% endblock content %}
 
+      {% block footer %}
+        <div class="footer">
+          <div class="footer__column">
+            <div class="footer__title">
+              Services
+            </div>
+            <div class="footer__item">Residential</div>
+            <div class="footer__item">Commercial</div>
+            <div class="footer__item">Process</div>
+            <div class="footer__item">Equipment</div>
+          </div>
+          <div class="footer__column">
+            <div class="footer__title">
+              Resources
+            </div>
+            <div class="footer__item">Rebates</div>
+            <div class="footer__item">Clean electricity</div>
+          </div>
+          <div class="footer__column">
+            <div class="footer__title">
+              Company
+            </div>
+            <div class="footer__item">Mission</div>
+            <div class="footer__item">Careers</div>
+            <div class="footer__item">Contact Us</div>
+          </div>
+          <div class="footer__column">
+            <div class="footer__title">
+              Effortless Electric
+            </div>
+          </div>
+        </div>
+      {% endblock footer %}
     </div> <!-- /container -->
 
     {% block modal %}{% endblock modal %}
