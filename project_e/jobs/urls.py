@@ -1,7 +1,7 @@
 from django.urls import path
 from project_e.jobs.views import (
     job_creation_view, 
-    pdf_contract_detail_view
+    pdf_contract_detail_view,
     job_detail_view, 
     job_customer_contacted
 )
