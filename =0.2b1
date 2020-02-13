@@ -1,0 +1,7 @@
+Requirement already satisfied: xhtml2pdf in /usr/local/lib/python2.7/site-packages (0.2.4)
+Requirement already satisfied: reportlab>=3.0 in /usr/local/lib/python2.7/site-packages (from xhtml2pdf) (3.5.34)
+Requirement already satisfied: six in /usr/local/lib/python2.7/site-packages (from xhtml2pdf) (1.11.0)
+Requirement already satisfied: Pillow in /usr/local/lib/python2.7/site-packages (from xhtml2pdf) (6.2.2)
+Requirement already satisfied: pyPdf2 in /usr/local/lib/python2.7/site-packages (from xhtml2pdf) (1.26.0)
+Requirement already satisfied: html5lib>=1.0 in /usr/local/lib/python2.7/site-packages (from xhtml2pdf) (1.0.1)
+Requirement already satisfied: webencodings in /usr/local/lib/python2.7/site-packages (from html5lib>=1.0->xhtml2pdf) (0.5.1)

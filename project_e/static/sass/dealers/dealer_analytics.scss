@@ -5,6 +5,7 @@
     flex-flow: column wrap;
     justify-content: center;
     width: 100%;
+    margin-top: 20px; 
 
     &__jobs{
         width: 45%;
@@ -12,8 +13,6 @@
         display: flex;
         justify-content: center;
         border: 1px solid $ee-light-gray;
-        margin-left: 20px;
-        margin-right: 20px;
         text-align: center;
 
         &__statistics{
@@ -49,7 +48,7 @@
         width: 100%;
     }
     &__graphics {
-        width: 100%;
+        width: 90%;
         display: flex;
         justify-content: center;
         align-items: center;
