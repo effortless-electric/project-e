@@ -23,6 +23,7 @@
             width: 108px;
             height: 179px;
             margin-top: 10;
+
             font-size: 82px;
         }
         &__statistics-text{
@@ -53,14 +54,14 @@
         justify-content: center;
         align-items: center;
         margin: auto 20px;
-        height: 413px;
         border: 1px solid $ee-light-gray;
         font-size: 60px;
+        
+        &__chart{
+            width: 90%;
+            
+        }
     }
-    &__graphics:hover{
-        box-shadow: 1px 1px 10px $ee-light-gray;
-        cursor: pointer;
     }
     
-
-}
+    

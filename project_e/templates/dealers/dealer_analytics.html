@@ -28,7 +28,15 @@
         </div>
     </div>
     <div class="dealer-analytics__row">
-        <div class="dealer-analytics__graphics">Graphic goes here</div>
+        <div class="dealer-analytics__graphics">
+            <div class="dealer-analytics__graphics__chart">
+                    <canvas id="myChart">
+                    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+                    <script src="{% static "js/line-chart.js" %}"></script>  
+                    </canvas>
+            </div>
+        </div>
     </div>
   </div>
 

@@ -20,5 +20,6 @@ coreapi==2.3.3  # https://github.com/core-api/python-client
 django-phonenumber-field # https://github.com/stefanfoulis/django-phonenumber-field
 phonenumbers
 django-braces
+django_ajax
 django-easy-pdf
 xhtml2pdf>=0.2b1

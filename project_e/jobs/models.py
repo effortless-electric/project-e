@@ -33,6 +33,7 @@ class Job(models.Model):
     customer_address = models.CharField(max_length=200, blank=True)
     customer_contacted = models.BooleanField(default=False)
 
+
     def get_absolute_url(self):
         return reverse("jobs:detail", kwargs={"pk": self.id})
 
