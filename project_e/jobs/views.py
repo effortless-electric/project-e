@@ -1,6 +1,6 @@
 import datetime
 
-from django.views.generic import UpdateView, FormView, DetailView
+from django.views.generic import UpdateView, FormView, DetailView, RedirectView
 from django.urls import reverse
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin

@@ -16,7 +16,6 @@ $button-height: 50px;
     flex-direction: row; 
     justify-content: flex-end;
     align-content: center;
-    margin-right: 10%; 
   }
 
   &__item {
@@ -109,6 +108,13 @@ html, body
     box-shadow: 0 2px 3px $ee-light-gray;  
   }
 }
+.checkbox{
+  line-height: normal;
+
+  input[type=checkbox], input[type=radio] {
+    line-height: normal;
+  }
+}
 
 .banner {
   display: flex; 
@@ -148,10 +154,10 @@ ul {
 
   &-logo { 
     height: 50px;
-    margin-left: 40px; 
+    margin: -15% auto auto 40px; 
   
     @media screen and (max-width: 500px){
-      margin-left: 0;
+      margin-left: 0; 
       height: 40px;  
     }
   }

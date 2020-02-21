@@ -46,12 +46,9 @@
         </a>
         <div class="base-nav__container">          
           {% if request.user.is_authenticated %}
-            <a class="base-nav__item nav__item" href="{% url 'users:detail' request.user.id  %}">Analytics</a>
+            <a class="base-nav__item nav__item" href="{% url 'users:detail' request.user.id  %}"></a>
             <a  class="button--blue nav__button base-nav__item" href="{% url 'account_logout' %}">{% trans "Sign Out" %}</a>
           {% else %}
-            <a class="base-nav__item nav__item" href="">Services</a>
-            <a class="base-nav__item nav__item" href="">Resources</a>
-            <a class="base-nav__item nav__item" href="">About Us</a>
             <a id="log-in-link" class="button--blue nav__button base-nav__item" href="{% url 'account_login' %}">{% trans "Log In" %}</a>
           {% endif %}
         </div>
