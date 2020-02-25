@@ -2,11 +2,11 @@ from django.conf import settings
 from django.urls import include, path
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, RedirectView
 from django.views import defaults as default_views
 
 urlpatterns = [
-    path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
+    path("", RedirectView.as_view(url='accounts/login/'), name="home"),
     path("dealer/", TemplateView.as_view(template_name="pages/dealer.html"), name="dealer-network"), 
     path(
         "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
@@ -21,6 +21,8 @@ urlpatterns = [
     path("jobs/", include("project_e.jobs.urls", namespace="jobs"))
     # Your stuff: custom urls includes go here
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
 
 if settings.DEBUG:
     # This allows the error pages to be debugged during development, just visit

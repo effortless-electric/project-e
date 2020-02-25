@@ -40,9 +40,9 @@
   <body>
 
     <div class="mb-1">
-      <nav class="base-nav">
-        <a class="navbar-brand nav-logo-container" href="{% url 'home' %}">
-          <img class="nav-logo" src="{% static 'images/logos/horizantal-blue-logo.png' %}" alt="logo" style="height:100px">
+      <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light justify-content-between" style="margin-bottom: 0">
+        <a class="nav-logo-container"  {% if request.user.is_authenticated %}href="{% url 'users:detail' request.user.id %}"{% endif %}>
+          <img class="nav-logo" src="{% static 'images/logos/main-logo-no-margin.svg' %}" alt="logo">
         </a>
         <div class="base-nav__container">          
           {% if request.user.is_authenticated %}
