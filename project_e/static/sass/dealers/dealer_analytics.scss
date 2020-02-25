@@ -49,11 +49,11 @@
         width: 100%;
     }
     &__graphics {
-        width: 90%;
+        width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
-        margin: auto 20px;
+        margin: auto;
         border: 1px solid $ee-light-gray;
         font-size: 60px;
         
