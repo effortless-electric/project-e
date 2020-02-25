@@ -55,7 +55,8 @@
         align-items: center;
 
         @media screen and (max-width: 650px) {
-            max-width: unset; 
+            margin-top: 50px; 
+            max-width: 90%; 
         }
     }
 
