@@ -4,6 +4,8 @@ from django.contrib.auth.models import (
 )
 from django.urls import reverse
 from django.core.mail import send_mail
+from django.template import Context
+from django.template.loader import render_to_string
 
 from allauth.account.utils import user_pk_to_url_str
 from allauth.account.forms import EmailAwarePasswordResetTokenGenerator
@@ -11,6 +13,9 @@ from allauth.account.adapter import DefaultAccountAdapter
 
 from project_e.dealers.models import Dealer
 from project_e.contractors.models import Contractor
+
+from django.contrib.sites.shortcuts import get_current_site
+
 
 class UserManager(BaseUserManager):
     def create_user(self, email, full_name=None, password=None, is_active=True, is_staff=False, is_admin=False):
@@ -98,13 +103,17 @@ class User(AbstractBaseUser):
         return self.active
 
     def send_reset_email(self, request): 
-        subject = "account creation"
-        message = "Hi please click here to set your password"
-        
         token_generator = EmailAwarePasswordResetTokenGenerator()
         temp_key = token_generator.make_token(self)
         link = request.build_absolute_uri(reverse("account_reset_password_from_key", kwargs=dict(uidb36=user_pk_to_url_str(self), key=temp_key)))
-        send_mail(subject, message + link, "from_email", [self.email], fail_silently=True)
+
+        context = { "current_site": get_current_site,
+                    "user": request.user,
+                    "password_reset_url": link,
+                    "request": request }
+
+        message = render_to_string("account/email/password_reset_key_message.txt", context)
+        send_mail("Welcome to Effortless Electric", message, "from_email", [self.email], fail_silently=True)
         # DefaultAccountAdapter.confirm_email(self, request, self.email)
         # DefaultAccountAdapter.send_confirmation_mail(self, request, self.email)
 
