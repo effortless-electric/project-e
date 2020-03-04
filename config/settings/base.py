@@ -74,7 +74,7 @@ THIRD_PARTY_APPS = [
     "rest_framework",
     "django_ajax",
     "easy_pdf"
-   # "phonenumber_field"
+    # "phonenumber_field"
 ]
 
 LOCAL_APPS = [
