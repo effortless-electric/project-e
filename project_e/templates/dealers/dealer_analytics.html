@@ -9,7 +9,9 @@
   <div class="dealer-analytics">
     <div class="dealer-analytics__row">
             <div class="dealer-analytics__jobs" onclick="window.location='{% url "dealers:employee-detail" pk=user.id %}'">
-                <div class="dealer-analytics__jobs__statistics">18</div>
+                <div class="dealer-analytics__jobs__statistics">
+                    {{job_count}}
+                </div>
                 <div class="dealer-analytics__jobs__statistics-text">Jobs this month</div>
             </div>
         <div class="dealer-analytics__jobs">

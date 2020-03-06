@@ -54,6 +54,10 @@ class DealerAnalyticsView(LoginRequiredMixin, ListView):
     def get_context_data(self, *args, **kwargs):
         context = super(DealerAnalyticsView, self).get_context_data(*args, **kwargs)
         context['analytics_list'] = Job.objects.filter(dealership=self.request.user.dealership).order_by('sale_date', 'customer.full_name')
+        counter = 0
+        for e in Job.objects.all():
+            counter += 1
+        context['job_count'] = counter
         return context
     
 class DealerDetailView(LoginRequiredMixin, DetailView):
