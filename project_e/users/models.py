@@ -18,14 +18,15 @@ from django.contrib.sites.shortcuts import get_current_site
 
 
 class UserManager(BaseUserManager):
-    def create_user(self, email, full_name=None, password=None, is_active=True, is_staff=False, is_admin=False):
+    def create_user(self, email, f_name, l_name, password=None, is_active=True, is_staff=False, is_admin=False):
         if not email:
             raise ValueError("Users must have an email address")
         if not password:
             raise ValueError("Users must have a password")
         user_obj = self.model(
             email = self.normalize_email(email),
-            full_name=full_name
+            f_name = f_name,
+            l_name = l_name,
         )
         user_obj.set_password(password) # change user password
         user_obj.staff = is_staff
@@ -34,10 +35,11 @@ class UserManager(BaseUserManager):
         user_obj.save(using=self._db)
         return user_obj
 
-    def create_staffuser(self, email,full_name=None, password=None):
+    def create_staffuser(self, email, f_name, l_name, password=None):
         user = self.create_user(
                 email,
-                full_name=full_name,
+                f_name = f_name,
+                l_name = l_name,
                 password=password,
                 is_staff=True
         )
@@ -45,10 +47,11 @@ class UserManager(BaseUserManager):
 
     # First Name and Last Name do not cover name patterns
     # around the globe.
-    def create_superuser(self, email, full_name=None, password=None):
+    def create_superuser(self, email, f_name=None, l_name=None, password=None):
         user = self.create_user(
                 email,
-                full_name=full_name,
+                f_name=None, 
+                l_name=None,
                 password=password,
                 is_staff=True,
                 is_admin=True
@@ -58,7 +61,8 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser):
     email = models.EmailField(max_length=255, unique=True)
-    full_name = models.CharField(max_length=255, blank=True, null=True)
+    f_name = models.CharField(max_length=255, blank=True, null=True)
+    l_name = models.CharField(max_length=255, blank=True, null=True)
     active = models.BooleanField(default=True) # can login 
     staff = models.BooleanField(default=False) # staff user non superuser
     admin = models.BooleanField(default=False) # superuser 
@@ -72,7 +76,7 @@ class User(AbstractBaseUser):
     
     USERNAME_FIELD = 'email' 
     # USERNAME_FIELD is required by default but I changed it to email
-    REQUIRED_FIELDS = [] #['full_name'] would go here if you want the users full name
+    REQUIRED_FIELDS = ['f_name', 'l_name'] 
 
     objects = UserManager()
 
@@ -83,8 +87,8 @@ class User(AbstractBaseUser):
         return self.email
 
     def get_full_name(self):
-        if self.full_name:
-            return self.full_name
+        if self.f_name and self.l_name:
+            return self.f_name + self.l_name
         return self.email
 
     def get_short_name(self):

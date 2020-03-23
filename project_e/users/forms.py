@@ -18,7 +18,7 @@ class UserAdminCreationForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('full_name', 'email',) #full_name is optional and not working yet
+        fields = ('f_name', 'l_name', 'email',) #full_name is optional and not working yet
 
 
     def clean_password2(self):
@@ -48,7 +48,7 @@ class UserAdminChangeForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('full_name', 'email', 'password', 'active', 'admin')
+        fields = ('f_name', 'l_name', 'email', 'password', 'active', 'admin')
 
     def clean_password(self):
         # Regardless of what the user provides, return the initial value.
@@ -74,7 +74,7 @@ class SignUpForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('full_name', 'email',) #'full_name',)
+        fields = ('f_name', 'l_name', 'email',) #'full_name',)
 
     def clean_password2(self):
         # Check that the two password entries match

@@ -1,6 +1,6 @@
 from django.urls import path
 
-from project_e.charts.views import(home_view, get_data, chart_data_view)
+from project_e.charts.views import(home_view, chart_data_view)
 
 from project_e.dealers.views import (
     dealer_creation_view, 
