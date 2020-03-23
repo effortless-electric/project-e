@@ -115,7 +115,7 @@ class DealerCreateEmployeeView(LoginRequiredMixin, FormView):
 class StaffDealerCreationView(views.StaffuserRequiredMixin, FormView): 
     model = Dealer
     form_class = StaffDealerCreationForm
-    template_name = "users/createcust_form.html"
+    template_name = "dealers/dealer_create_form.html"
 
     def form_valid(self, form): 
         full_name = form.cleaned_data["first_name"] + ' ' + form.cleaned_data["last_name"]
