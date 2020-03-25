@@ -1,7 +1,9 @@
 {% load i18n %}{% autoescape off %}{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}Hello from Effortless Electric
 
-You're receiving this e-mail because you or someone else has requested a password for your user account.
-It can be safely ignored if you did not request a password reset. Click the link below to reset your password.{% endblocktrans %}
+You're receiving this e-mail because someone has your new Effortless Electric user account.
+It can be safely ignored if you did not request a password reset. Click the link below to create your password.{% endblocktrans %}
+
+We can't wait to for you to get started and join the Effortless Electric community.
 
 {{ password_reset_url }}
 

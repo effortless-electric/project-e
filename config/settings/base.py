@@ -276,6 +276,7 @@ ACCOUNT_ADAPTER = "project_e.users.adapters.AccountAdapter"
 SOCIALACCOUNT_ADAPTER = "project_e.users.adapters.SocialAccountAdapter"
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
+ACCOUNT_EMAIL_SUBJECT_PREFIX="Effortless Electric "
 
 # Your stuff...
 # ------------------------------------------------------------------------------

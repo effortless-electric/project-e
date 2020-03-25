@@ -116,7 +116,7 @@ class User(AbstractBaseUser):
                     "password_reset_url": link,
                     "request": request }
 
-        message = render_to_string("account/email/password_reset_key_message.txt", context)
+        message = render_to_string("account/email/new_associate_message.txt", context)
         send_mail("Welcome to Effortless Electric", message, "from_email", [self.email], fail_silently=True)
         # DefaultAccountAdapter.confirm_email(self, request, self.email)
         # DefaultAccountAdapter.send_confirmation_mail(self, request, self.email)
