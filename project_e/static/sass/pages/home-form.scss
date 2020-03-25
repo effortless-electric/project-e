@@ -30,11 +30,12 @@ $button-blue: #398FCC;
 
     &__button {
         width: 100%; 
-        background-color: $button-blue;
+        background-color: $dark-blue;
         color: white; 
         border-radius: 0px; 
         border: 0px solid white; 
         padding: 10px; 
+        border-radius:4px; 
     }
 
     &__form {
