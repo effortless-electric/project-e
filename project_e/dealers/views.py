@@ -5,11 +5,12 @@ from django.contrib.auth import get_user_model
 from django.urls import reverse
 from django.contrib import messages
 from braces import views
+from allauth.account.forms import EmailAwarePasswordResetTokenGenerator
+from django.shortcuts import render
 
 from project_e.dealers.models import Dealer
 from project_e.dealers.forms import EmployeeCreationForm, StaffDealerCreationForm
 from project_e.customers.models import Customer
-from django.shortcuts import render
 from project_e.jobs.models import Job
 
 User = get_user_model()
@@ -139,7 +140,7 @@ class StaffDealerCreationView(views.StaffuserRequiredMixin, FormView):
         )
         user.dealership = dealer
         user.save()
-        user.send_reset_email(self.request)
+        user.send_dealer_email(self.request)
         
         messages.add_message(
             self.request, messages.INFO, "Associate Created Successfully"
