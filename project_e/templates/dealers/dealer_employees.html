@@ -11,7 +11,7 @@
         <div class="dealer-employees__users">
             {% for user in user_list %}
                 <div class="content-container" onclick="window.location='{% url "dealers:employee-detail" pk=user.id %}'">
-                    <div class="dealer-employees-user__item--name"> {% if user.full_name %} {{user.full_name}} {% else %} {{ user.email }} {% endif %}</div>
+                    <div class="dealer-employees-user__item--name"> {{user.get_full_name}} </div>
                     <div class="dealer-employees-user__item"> {% if user.verified %} Verified {% else %} Unverified {% endif %} </div>
                     <div class="dealer-employees-user__item"> {{ user.dealership.name }} </div>
                     <a class="content-container__view" href="{% url "dealers:employee-detail" pk=user.id %}">
