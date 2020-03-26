@@ -5,11 +5,12 @@ from django.contrib.auth import get_user_model
 from django.urls import reverse
 from django.contrib import messages
 from braces import views
+from allauth.account.forms import EmailAwarePasswordResetTokenGenerator
+from django.shortcuts import render
 
 from project_e.dealers.models import Dealer
 from project_e.dealers.forms import EmployeeCreationForm, StaffDealerCreationForm
 from project_e.customers.models import Customer
-from django.shortcuts import render
 from project_e.jobs.models import Job
 
 User = get_user_model()
@@ -98,13 +99,14 @@ class DealerCreateEmployeeView(LoginRequiredMixin, FormView):
         return reverse("dealers:verify")
 
     def form_valid(self, form): 
-        full_name = form.cleaned_data["first_name"] + ' ' + form.cleaned_data["last_name"]
+        first_name = form.cleaned_data["first_name"]
+        last_name = form.cleaned_data["last_name"]
         user_email = form.cleaned_data["email"]
         user = User.objects.filter(email=user_email)
         if user:
             user = User.objects.get(email=user_email) 
         else:
-            user = User.objects.create_user(user_email, full_name, "testaccount")
+            user = User.objects.create_user(user_email, first_name, last_name, "testaccount")
         user.dealership = self.request.user.dealership
         user.sales = True
         user.save()
@@ -122,13 +124,14 @@ class StaffDealerCreationView(views.StaffuserRequiredMixin, FormView):
     template_name = "dealers/dealer_create_form.html"
 
     def form_valid(self, form): 
-        full_name = form.cleaned_data["first_name"] + ' ' + form.cleaned_data["last_name"]
+        first_name = form.cleaned_data["first_name"] 
+        last_name = form.cleaned_data["last_name"]
         user_email = form.cleaned_data["email"]
         user = User.objects.filter(email=user_email)
         if user:
             user = User.objects.get(email=user_email) 
         else:
-            user = User.objects.create_user(user_email, full_name, "testaccount")
+            user = User.objects.create_user(user_email, first_name, last_name, "testaccount")
         user.sales = True
         user.verified = True
 
@@ -139,7 +142,7 @@ class StaffDealerCreationView(views.StaffuserRequiredMixin, FormView):
         )
         user.dealership = dealer
         user.save()
-        user.send_reset_email(self.request)
+        user.send_dealer_email(self.request)
         
         messages.add_message(
             self.request, messages.INFO, "Associate Created Successfully"

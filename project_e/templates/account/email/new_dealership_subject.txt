@@ -1,0 +1,15 @@
+{% load i18n %}{% autoescape off %}{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}Hello from Effortless Electric
+
+You're receiving this e-mail because you have just joined Effortless Electric network of dealerships. You can now login and 
+start doing what you do best. Click the link below to create your password.{% endblocktrans %}
+
+We can't wait to for you to get started and join the Effortless Electric community. Our customer support team is eagerly waiting 
+to work with you and help develop our product. Please give us feedback as we both grow in the coming months. 
+
+{{ password_reset_url }}
+
+{% if username %}{% blocktrans %}In case you forgot, your username is {{ username }}.{% endblocktrans %}
+
+{% endif %}{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}Thank you for using Effortless Electric!
+effortlesselectric.com{% endblocktrans %}
+{% endautoescape %}

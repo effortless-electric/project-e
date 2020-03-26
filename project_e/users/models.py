@@ -106,6 +106,19 @@ class User(AbstractBaseUser):
     def is_active(self):
         return self.active
 
+    def send_dealer_email(self, request): 
+        token_generator = EmailAwarePasswordResetTokenGenerator()
+        temp_key = token_generator.make_token(self)
+        link = request.build_absolute_uri(reverse("account_reset_password_from_key", kwargs=dict(uidb36=user_pk_to_url_str(self), key=temp_key)))
+
+        context = { "current_site": get_current_site,
+                    "user": request.user,
+                    "password_reset_url": link,
+                    "request": request }
+
+        message = render_to_string("account/email/new_dealership_subject.txt", context)
+        send_mail("Welcome to Effortless Electric", message, "from_email", [self.email], fail_silently=True)
+
     def send_reset_email(self, request): 
         token_generator = EmailAwarePasswordResetTokenGenerator()
         temp_key = token_generator.make_token(self)
