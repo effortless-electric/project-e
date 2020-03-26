@@ -40,7 +40,7 @@ class JobDetailView(LoginRequiredMixin, UpdateView):
             },
              {
                 "title": "Customer:",
-                "body": job.customer.full_name
+                "body": job.customer.get_full_name
             },
             {
                 "title": "Address:",
@@ -68,13 +68,14 @@ class JobCreationView(LoginRequiredMixin, FormView):
 
     def form_valid(self, form):
         #print(User.objects.get(self.request.dealership_id))
-        full_name = form.cleaned_data["first_name"] + ' ' + form.cleaned_data["last_name"]
+        first_name = form.cleaned_data["first_name"] 
+        last_name = form.cleaned_data["last_name"]
         user_email = form.cleaned_data["email"]
         existing_user = User.objects.filter(email=user_email)
         if existing_user: 
             user = User.objects.get(email=user_email)
         else: 
-            user = User.objects.create_user(user_email, full_name, "newpass123") # replace password with one time pass
+            user = User.objects.create_user(user_email, f_name, l_name, "newpass123") # replace password with one time pass
 
         Job.objects.create(
             customer=user,

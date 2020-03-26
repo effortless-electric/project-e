@@ -18,7 +18,7 @@
           </div>
           <div class="dealer-jobs__col">
             <div class="dealer-jobs__title">Customer</div>
-            {{job.customer.full_name}}
+            {{job.customer.get_full_name}}
           </div>
           {% if request.user.staff %}
           <div class="dealer-jobs__col">
